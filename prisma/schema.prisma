@@ -1,0 +1,208 @@
+// Prisma Schema for LinkGuard SaaS
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // Can be switched to postgresql in .env for Neon/Supabase
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String               @id @default(cuid())
+  name                String?
+  email               String               @unique
+  passwordHash        String?
+  plan                String               @default("free") // "free" | "pro" | "business"
+  avatarUrl           String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  websites            Website[]
+  alerts              Alert[]
+  telegramConnection  TelegramConnection?
+  subscription        Subscription?
+
+  @@map("users")
+}
+
+model Website {
+  id                     String           @id @default(cuid())
+  userId                 String
+  url                    String
+  domain                 String
+  name                   String
+  sitemapUrl             String?
+  status                 String           @default("monitoring") // "monitoring" | "scanning" | "paused"
+  articlesCount          Int              @default(0)
+  linksCount             Int              @default(0)
+  healthyCount           Int              @default(0)
+  brokenCount            Int              @default(0)
+  warningCount           Int              @default(0)
+  totalMonthlyLossAtRisk Float            @default(0)
+  scanFrequency          String           @default("daily") // "daily" | "twice_daily" | "weekly"
+  preferredScanTime      String           @default("02:00")
+  crawlerEngineMode      String           @default("anti_block_stealth")
+  spaRenderingEnabled    Boolean          @default(true)
+  antiBlockProxyEnabled  Boolean          @default(true)
+  telegramAlerts         Boolean          @default(true)
+  emailAlerts            Boolean          @default(true)
+  slackAlerts            Boolean          @default(true)
+  discordAlerts          Boolean          @default(true)
+  lastScanAt             DateTime?
+  nextScanAt             DateTime?
+  isDemo                 Boolean          @default(false)
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime         @updatedAt
+
+  user                   User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  articles               Article[]
+  affiliateLinks         AffiliateLink[]
+  scanJobs               ScanJob[]
+
+  @@map("websites")
+}
+
+model Article {
+  id             String           @id @default(cuid())
+  websiteId      String
+  url            String
+  title          String
+  lastCrawledAt  DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  website        Website          @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  affiliateLinks AffiliateLink[]
+
+  @@unique([websiteId, url])
+  @@map("articles")
+}
+
+model AffiliateLink {
+  id                   String           @id @default(cuid())
+  websiteId            String
+  articleId            String?
+  url                  String
+  normalizedUrl        String
+  network              String           @default("Custom / Direct")
+  anchorText           String           @default("Click here")
+  status               String           @default("HEALTHY") // "HEALTHY" | "BROKEN" | "WARNING"
+  httpStatus           Int              @default(200)
+  availabilityStatus   String           @default("in_stock") // "in_stock" | "out_of_stock" | "unavailable"
+  errorType            String?
+  estimatedMonthlyLoss Float            @default(0)
+  monthlyPageViews     Int              @default(5000)
+  conversionRate       Float            @default(2.5)
+  averageCommission    Float            @default(10.0)
+  priority             String           @default("medium") // "critical" | "high" | "medium" | "low"
+  suggestedAction      String?
+  firstDetectedAt      DateTime         @default(now())
+  lastCheckedAt        DateTime         @default(now())
+  lastStatusChangeAt   DateTime         @default(now())
+  isResolved           Boolean          @default(false)
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  website              Website          @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  article              Article?         @relation(fields: [articleId], references: [id], onDelete: SetNull)
+  linkChecks           LinkCheck[]
+  alerts               Alert[]
+
+  @@map("affiliate_links")
+}
+
+model LinkCheck {
+  id                 String           @id @default(cuid())
+  affiliateLinkId    String
+  checkedAt          DateTime         @default(now())
+  httpStatus         Int
+  finalUrl           String
+  responseTimeMs     Int
+  availabilityStatus String           @default("in_stock")
+  errorType          String?
+  message            String?
+
+  affiliateLink      AffiliateLink    @relation(fields: [affiliateLinkId], references: [id], onDelete: Cascade)
+
+  @@map("link_checks")
+}
+
+model Alert {
+  id                 String           @id @default(cuid())
+  userId             String
+  affiliateLinkId    String?
+  type               String           @default("broken") // "broken" | "warning" | "resolved"
+  message            String
+  linkUrl            String?
+  articleTitle       String?
+  estimatedRevenueLoss Float          @default(0)
+  sentToTelegram     Boolean          @default(false)
+  sentToEmail        Boolean          @default(false)
+  sentToSlack        Boolean          @default(false)
+  sentToDiscord      Boolean          @default(false)
+  isRead             Boolean          @default(false)
+  isDismissed        Boolean          @default(false)
+  createdAt          DateTime         @default(now())
+  resolvedAt         DateTime?
+
+  user               User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  affiliateLink      AffiliateLink?   @relation(fields: [affiliateLinkId], references: [id], onDelete: SetNull)
+
+  @@map("alerts")
+}
+
+model TelegramConnection {
+  id                   String           @id @default(cuid())
+  userId               String           @unique
+  chatId               String?
+  username             String?
+  connectCode          String?          @unique
+  isActive             Boolean          @default(true)
+  connectedAt          DateTime?
+  lastAlertSentAt      DateTime?
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  user                 User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("telegram_connections")
+}
+
+model ScanJob {
+  id                   String           @id @default(cuid())
+  websiteId            String
+  status               String           @default("QUEUED") // "QUEUED" | "RUNNING" | "COMPLETED" | "FAILED"
+  startedAt            DateTime         @default(now())
+  finishedAt           DateTime?
+  duration             String?
+  articlesScanned      Int              @default(0)
+  linksFound           Int              @default(0)
+  healthyCount         Int              @default(0)
+  brokenCount          Int              @default(0)
+  warningCount         Int              @default(0)
+  crawlerModeUsed      String           @default("anti_block_stealth")
+  error                String?
+  createdAt            DateTime         @default(now())
+
+  website              Website          @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+
+  @@map("scan_jobs")
+}
+
+model Subscription {
+  id                   String           @id @default(cuid())
+  userId               String           @unique
+  plan                 String           @default("free") // "free" | "pro" | "business"
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  status               String           @default("active")
+  currentPeriodEnd     DateTime?
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  user                 User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
