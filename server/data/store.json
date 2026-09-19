@@ -18696,5 +18696,5 @@
     "customWebhookEnabled": false,
     "notifyOnCriticalOnly": false
   },
-  "test": "ok"
+  "test": "sync_check"
 }

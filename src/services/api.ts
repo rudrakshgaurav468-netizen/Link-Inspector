@@ -48,12 +48,29 @@ export interface BackendHealth {
 
 const API_BASE = '/api';
 
+async function parseResponse<T>(res: Response, fallbackError: string): Promise<T> {
+  if (!res.ok) {
+    let errorDetail = '';
+    try {
+      const data = await res.json();
+      if (data.hint) {
+        errorDetail = `${data.message || data.error || fallbackError} (${data.hint})`;
+      } else if (data.message || data.error) {
+        errorDetail = data.message || data.error;
+      }
+    } catch {
+      // not JSON
+    }
+    throw new Error(errorDetail || `${fallbackError} (HTTP ${res.status})`);
+  }
+  return res.json();
+}
+
 export const api = {
   // 1. Health check
   async health(): Promise<BackendHealth> {
     const res = await fetch(`${API_BASE}/health`, { signal: AbortSignal.timeout(4000) });
-    if (!res.ok) throw new Error('Backend health check failed');
-    return res.json();
+    return parseResponse<BackendHealth>(res, 'Backend health check failed');
   },
 
   async getHealth(): Promise<BackendHealth> {
@@ -63,8 +80,7 @@ export const api = {
   // 2. Fetch entire database state
   async getDb(): Promise<DatabaseState> {
     const res = await fetch(`${API_BASE}/db`, { signal: AbortSignal.timeout(5000) });
-    if (!res.ok) throw new Error('Failed to fetch database from backend');
-    return res.json();
+    return parseResponse<DatabaseState>(res, 'Failed to fetch database from backend');
   },
 
   // 3. Sync & save entire or partial database state
@@ -75,8 +91,7 @@ export const api = {
       body: JSON.stringify(data),
       signal: AbortSignal.timeout(6000),
     });
-    if (!res.ok) throw new Error('Failed to sync database to backend');
-    return res.json();
+    return parseResponse<{ success: boolean; db: DatabaseState }>(res, 'Failed to sync database to backend');
   },
 
   // 4. Live Crawl & Scan Website

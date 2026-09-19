@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import {
   Website,
@@ -241,35 +241,78 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.setItem('linkguard_competitors', JSON.stringify(competitors));
   }, [competitors]);
 
-  // Connect to Backend on mount & synchronize DB
-  const refreshBackendConnection = useCallback(async () => {
-    try {
-      setBackendStatus('connecting');
-      const health = await api.getHealth();
-      setBackendHealth(health);
-      setBackendStatus('connected');
-
-      // Load DB state from backend
-      const db = await api.getDb();
-      if (db) {
-        if (db.websites && db.websites.length > 0) setWebsites(db.websites);
-        if (db.links && db.links.length > 0) setAffiliateLinks(db.links);
-        if (db.alerts) setAlerts(db.alerts);
-        if (db.scanJobs) setScanJobs(db.scanJobs);
-        if (db.telegram) setTelegram(db.telegram);
-        if (db.whiteLabel) setWhiteLabel(db.whiteLabel);
-        if (db.webhooks) setWebhooks(db.webhooks);
-        if (db.competitors) setCompetitors(db.competitors);
-        if (db.user) setUser(db.user);
-      }
-    } catch (err) {
-      console.warn('Backend connection unavailable, using local cache:', err);
-      setBackendStatus('disconnected');
-    }
+  const removeToast = useCallback((id: string) => {
+    setToasts(prev => prev.filter(t => t.id !== id));
   }, []);
 
+  const addToast = useCallback((toast: Omit<ToastMessage, 'id'>) => {
+    const id = 'toast_' + Math.random().toString(36).substring(2, 9);
+    const newToast: ToastMessage = { ...toast, id };
+    setToasts(prev => [...prev, newToast]);
+
+    setTimeout(() => {
+      removeToast(id);
+    }, toast.duration || 4500);
+  }, [removeToast]);
+
+  const prevBackendStatusRef = useRef<'connected' | 'connecting' | 'disconnected'>('connecting');
+
+  // Connect to Backend on mount, periodic heartbeat & synchronize DB
+  const refreshBackendConnection = useCallback(async (isHeartbeat = false) => {
+    try {
+      if (!isHeartbeat) setBackendStatus('connecting');
+      const health = await api.getHealth();
+      setBackendHealth(health);
+
+      if (prevBackendStatusRef.current === 'disconnected') {
+        addToast({
+          title: 'Backend Reconnected ⚡',
+          description: 'Connection to Express API server on port 3001 restored.',
+          type: 'success',
+          duration: 3500,
+        });
+      }
+      prevBackendStatusRef.current = 'connected';
+      setBackendStatus('connected');
+
+      // Load DB state from backend on initial connect
+      if (!isHeartbeat) {
+        const db = await api.getDb();
+        if (db) {
+          if (db.websites && db.websites.length > 0) setWebsites(db.websites);
+          if (db.links && db.links.length > 0) setAffiliateLinks(db.links);
+          if (db.alerts) setAlerts(db.alerts);
+          if (db.scanJobs) setScanJobs(db.scanJobs);
+          if (db.telegram) setTelegram(db.telegram);
+          if (db.whiteLabel) setWhiteLabel(db.whiteLabel);
+          if (db.webhooks) setWebhooks(db.webhooks);
+          if (db.competitors) setCompetitors(db.competitors);
+          if (db.user) setUser(db.user);
+        }
+      }
+    } catch (err) {
+      if (prevBackendStatusRef.current === 'connected') {
+        addToast({
+          title: 'Backend Disconnected ⚠️',
+          description: 'Express API (port 3001) is unreachable. Running in offline/demo mode.',
+          type: 'warning',
+          duration: 5000,
+        });
+      }
+      prevBackendStatusRef.current = 'disconnected';
+      setBackendStatus('disconnected');
+    }
+  }, [addToast]);
+
   useEffect(() => {
-    refreshBackendConnection();
+    refreshBackendConnection(false);
+
+    // Periodic heartbeat every 8 seconds to detect backend status changes
+    const heartbeatInterval = setInterval(() => {
+      refreshBackendConnection(true);
+    }, 8000);
+
+    return () => clearInterval(heartbeatInterval);
   }, [refreshBackendConnection]);
 
   // Sync state mutations to backend
@@ -285,20 +328,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const totalRevenueProtected = affiliateLinks
     .filter(l => l.status === 'healthy')
     .reduce((acc, l) => acc + (l.revenueImpact?.averageCommission * 18 || 0), 0);
-
-  const addToast = (toast: Omit<ToastMessage, 'id'>) => {
-    const id = 'toast_' + Math.random().toString(36).substring(2, 9);
-    const newToast: ToastMessage = { ...toast, id };
-    setToasts(prev => [...prev, newToast]);
-
-    setTimeout(() => {
-      removeToast(id);
-    }, toast.duration || 4500);
-  };
-
-  const removeToast = (id: string) => {
-    setToasts(prev => prev.filter(t => t.id !== id));
-  };
 
   const openEmailPreview = (alert: Alert) => {
     setSelectedEmailAlert(alert);

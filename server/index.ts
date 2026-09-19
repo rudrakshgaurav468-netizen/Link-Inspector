@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import { loadDb, saveDb, resetDb } from './db';
@@ -17,8 +20,38 @@ import { AffiliateLink, ScanJob, Website } from '../src/types';
 
 import { handleDailyCronCheck } from './routes/cron';
 
+// 1. Process-level safety traps to prevent silent dying
+process.on('uncaughtException', (err) => {
+  console.error('💥 [FATAL] Uncaught Exception in Backend Server:', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('💥 [FATAL] Unhandled Promise Rejection at:', promise, 'reason:', reason);
+});
+
+// 2. Load environment variables with fallback check
+const envPath = path.resolve(process.cwd(), '.env');
+const envExamplePath = path.resolve(process.cwd(), '.env.example');
+
+if (!fs.existsSync(envPath)) {
+  if (fs.existsSync(envExamplePath)) {
+    try {
+      fs.copyFileSync(envExamplePath, envPath);
+      console.log('ℹ️ [Config] .env was missing. Automatically copied default config from .env.example');
+    } catch (err: any) {
+      console.warn('⚠️ [Config] .env missing and could not copy .env.example:', err.message);
+    }
+  } else {
+    console.warn('⚠️ [Config] No .env or .env.example found. Server will use default PORT=3001.');
+  }
+}
+
+dotenv.config();
+
 const app = express();
-const PORT = process.env.PORT || 3001;
+const rawPort = process.env.PORT || '3001';
+const parsedPort = parseInt(rawPort, 10);
+const PORT = !isNaN(parsedPort) && parsedPort > 0 && parsedPort <= 65535 ? parsedPort : 3001;
 
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
@@ -422,11 +455,38 @@ app.get('/api/export/csv', (req, res) => {
   res.send(csv);
 });
 
-const server = app.listen(Number(PORT), '0.0.0.0', () => {
-  console.log(`🛡️ LinkGuard Backend Engine running on http://localhost:${PORT} and http://127.0.0.1:${PORT}`);
+const server = app.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n========================================================`);
+  console.log(`🛡️ LinkGuard Backend Engine running successfully!`);
+  console.log(`📍 Local:        http://localhost:${PORT}`);
+  console.log(`📍 Network:      http://127.0.0.1:${PORT}`);
+  console.log(`📊 Health Check: http://localhost:${PORT}/api/health`);
+  console.log(`🗄️ Database:     server/data/store.json`);
+  console.log(`========================================================\n`);
 });
 
-process.on('SIGTERM', () => {
-  server.close();
+server.on('error', (err: any) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`\n🚨 [Startup Error] Port ${PORT} is already in use by another process!`);
+    console.error(`💡 Solutions:`);
+    console.error(`   1. Terminate the process using port ${PORT} (e.g. 'npx kill-port ${PORT}')`);
+    console.error(`   2. Set a different PORT in your .env file (e.g. PORT=3002)\n`);
+  } else if (err.code === 'EACCES') {
+    console.error(`\n🚨 [Startup Error] Insufficient permissions to bind to port ${PORT}.\n`);
+  } else {
+    console.error(`\n🚨 [Startup Error] Failed to start HTTP server:`, err, '\n');
+  }
 });
+
+const gracefulShutdown = (signal: string) => {
+  console.log(`🛑 [Shutdown] Received ${signal}. Closing LinkGuard backend server gracefully...`);
+  server.close(() => {
+    console.log('✅ [Shutdown] Backend server closed successfully.');
+    process.exit(0);
+  });
+};
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
 
