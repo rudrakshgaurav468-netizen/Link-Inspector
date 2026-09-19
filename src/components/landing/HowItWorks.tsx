@@ -11,31 +11,31 @@ export const HowItWorks: React.FC = () => {
       num: '01',
       title: 'Add your website',
       desc: 'Enter your website URL and LinkGuard discovers your content and sitemap index in seconds.',
-      icon: <Globe className="w-6 h-6 text-emerald-600" />,
+      icon: <Globe className="w-6 h-6 text-rose-600" />,
     },
     {
       num: '02',
       title: 'Scan your sitemap',
       desc: 'LinkGuard reads your sitemap.xml and discovers all published articles automatically.',
-      icon: <FileCode2 className="w-6 h-6 text-emerald-600" />,
+      icon: <FileCode2 className="w-6 h-6 text-rose-600" />,
     },
     {
       num: '03',
       title: 'Find affiliate links',
       desc: 'Outbound affiliate links (Amazon, ClickBank, ShareASale, Impact) are extracted and saved.',
-      icon: <Link2 className="w-6 h-6 text-emerald-600" />,
+      icon: <Link2 className="w-6 h-6 text-rose-600" />,
     },
     {
       num: '04',
       title: 'Check links every day',
       desc: 'LinkGuard runs autonomous background health checks at 2:00 AM for HTTP status & stock availability.',
-      icon: <CheckCircle className="w-6 h-6 text-emerald-600" />,
+      icon: <CheckCircle className="w-6 h-6 text-rose-600" />,
     },
     {
       num: '05',
       title: 'Get alerted',
       desc: 'If something breaks or goes out of stock, you receive an actionable Telegram or email push alert.',
-      icon: <BellRing className="w-6 h-6 text-emerald-600" />,
+      icon: <BellRing className="w-6 h-6 text-rose-600" />,
     },
   ];
 
@@ -43,7 +43,7 @@ export const HowItWorks: React.FC = () => {
     <section id="how-it-works" className="py-20 md:py-28 bg-white border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          <span className="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
             Automated Architecture
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -57,16 +57,16 @@ export const HowItWorks: React.FC = () => {
         {/* 5-Step Process Timeline */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
           {steps.map((step, idx) => (
-            <div 
-              key={idx} 
-              className="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200/80 hover:border-emerald-300 hover:shadow-elevated transition-all duration-200 flex flex-col justify-between group relative"
+            <div
+              key={idx}
+              className="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200/80 hover:border-rose-300 hover:shadow-elevated transition-all duration-200 flex flex-col justify-between group relative"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-black text-slate-300 font-mono group-hover:text-emerald-500 transition-colors">
+                  <span className="text-2xl font-black text-slate-300 font-mono group-hover:text-rose-500 transition-colors">
                     {step.num}
                   </span>
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 group-hover:border-emerald-200 group-hover:bg-emerald-50/50 flex items-center justify-center transition-all shadow-subtle">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 group-hover:border-rose-200 group-hover:bg-rose-50/50 flex items-center justify-center transition-all shadow-subtle">
                     {step.icon}
                   </div>
                 </div>
@@ -90,7 +90,7 @@ export const HowItWorks: React.FC = () => {
             <p className="text-xs text-slate-400 mt-0.5">Start monitoring in under 3 minutes with zero code or plugins required.</p>
           </div>
           <Button
-            variant="emerald"
+            variant="rose"
             size="md"
             rightIcon={<ArrowRight className="w-4 h-4" />}
             onClick={() => {

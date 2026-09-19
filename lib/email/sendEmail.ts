@@ -19,11 +19,11 @@ export async function sendEmailAlert(data: EmailAlertData): Promise<{ success: b
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 24px; }
     .container { max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
     .header { background: #0f172a; padding: 24px; color: #ffffff; }
-    .logo { font-size: 18px; font-weight: 800; color: #10b981; }
+    .logo { font-size: 18px; font-weight: 800; color: #e11d48; }
     .badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; background: #ffe4e6; color: #e11d48; margin-top: 10px; }
     .content { padding: 24px; }
     .box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin: 16px 0; font-size: 13px; }
-    .btn { display: inline-block; background: #10b981; color: #ffffff !important; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; margin-top: 16px; }
+    .btn { display: inline-block; background: #e11d48; color: #ffffff !important; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; margin-top: 16px; }
     .footer { padding: 20px; font-size: 11px; color: #94a3b8; text-align: center; border-top: 1px solid #f1f5f9; }
   </style>
 </head>
@@ -42,7 +42,7 @@ export async function sendEmailAlert(data: EmailAlertData): Promise<{ success: b
 
       <div class="box">
         <strong>Target Article:</strong> ${data.articleTitle}<br>
-        <strong style="color: #64748b;">Page URL:</strong> <a href="${data.articleUrl}" style="color: #10b981;">${data.articleUrl}</a><br><br>
+        <strong style="color: #64748b;">Page URL:</strong> <a href="${data.articleUrl}" style="color: #e11d48;">${data.articleUrl}</a><br><br>
         <strong>Broken Link:</strong> <code style="color: #e11d48; background: #fff1f2; padding: 2px 6px; border-radius: 4px;">${data.linkUrl}</code><br>
         <strong>Issue:</strong> <span style="color: #e11d48; font-weight: 700;">${data.errorType} (HTTP ${data.httpStatus})</span>
       </div>

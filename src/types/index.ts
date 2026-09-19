@@ -137,6 +137,26 @@ export interface CheckHistoryItem {
   message: string;
 }
 
+export type LinkScope = 'all' | 'outbound';
+
+export interface CrawlerDiagnostics {
+  targetUrl: string;
+  finalUrl: string;
+  isRedirected: boolean;
+  pageTitle: string;
+  modeUsed: CrawlerEngineMode;
+  totalAnchorsInDom: number;
+  internalAnchorsCount: number;
+  nonHttpOrSchemeCount: number;
+  outboundAnchorsCount: number;
+  specialAnchorsCount?: number;
+  linkScope?: LinkScope;
+  isCloudflareBlocked: boolean;
+  isLoginWall: boolean;
+  httpStatus: number;
+  executionDurationMs: number;
+}
+
 export interface AffiliateLink {
   id: string;
   websiteId: string;
@@ -145,11 +165,17 @@ export interface AffiliateLink {
   articleTitle: string;
   articleUrl: string;
   url: string;
+  finalUrl?: string;
   normalizedUrl: string;
   network: AffiliateNetwork;
   anchorText: string;
+  linkType?: string;
+  isInternal?: boolean;
   status: LinkStatus;
   httpStatus: number;
+  responseTimeMs?: number;
+  crawlerEngineMode?: CrawlerEngineMode;
+  verificationMessage?: string;
   availabilityStatus: 'in_stock' | 'out_of_stock' | 'unavailable' | 'unknown';
   errorType?: ErrorType;
   revenueImpact: RevenueImpact;
@@ -162,6 +188,7 @@ export interface AffiliateLink {
   suggestedAction?: string;
   isResolved?: boolean;
   activeHeadlessRedirect?: HeadlessRedirectRecord;
+  linkCategory?: string;
 }
 
 export interface Alert {

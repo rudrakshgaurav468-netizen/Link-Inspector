@@ -3,16 +3,17 @@ import { ShieldCheck, Mail, Lock, User as UserIcon, ArrowRight } from 'lucide-re
 import { useApp } from '../../context/AppContext';
 import { Modal } from '../common/Modal';
 import { Button } from '../common/Button';
+import { WarmHugBadge } from '../common/Logo';
 
 export const AuthModal: React.FC = () => {
-  const { 
-    isAuthModalOpen, 
-    setIsAuthModalOpen, 
-    authModalMode, 
-    setAuthModalMode, 
-    setUser, 
+  const {
+    isAuthModalOpen,
+    setIsAuthModalOpen,
+    authModalMode,
+    setAuthModalMode,
+    setUser,
     setActiveView,
-    addToast 
+    addToast
   } = useApp();
 
   const [name, setName] = useState('Alex Vance');
@@ -82,8 +83,8 @@ export const AuthModal: React.FC = () => {
       maxWidth="md"
     >
       <div className="text-center mb-6">
-        <div className="w-12 h-12 rounded-2xl bg-slate-900 text-emerald-400 flex items-center justify-center mx-auto mb-3 shadow-subtle">
-          <ShieldCheck className="w-6 h-6 text-emerald-400" />
+        <div className="flex justify-center mb-3">
+          <WarmHugBadge size="lg" />
         </div>
         <h3 className="text-xl font-bold text-slate-900">
           {authModalMode === 'signup' && 'Create your LinkGuard account'}
@@ -109,7 +110,7 @@ export const AuthModal: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Alex Vance"
-                className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
               />
             </div>
           </div>
@@ -125,7 +126,7 @@ export const AuthModal: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="alex@mytechblog.com"
-              className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+              className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
             />
           </div>
         </div>
@@ -138,7 +139,7 @@ export const AuthModal: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setAuthModalMode('forgot')}
-                  className="text-[11px] text-emerald-600 hover:underline font-semibold"
+                  className="text-[11px] text-rose-600 hover:underline font-semibold"
                 >
                   Forgot password?
                 </button>
@@ -152,14 +153,14 @@ export const AuthModal: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••"
-                className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
               />
             </div>
           </div>
         )}
 
         <Button
-          variant="emerald"
+          variant="rose"
           size="lg"
           className="w-full mt-2"
           isLoading={isLoading}
@@ -187,7 +188,7 @@ export const AuthModal: React.FC = () => {
             Don't have an account?{' '}
             <button
               onClick={() => setAuthModalMode('signup')}
-              className="font-bold text-emerald-600 hover:underline"
+              className="font-bold text-rose-600 hover:underline"
             >
               Create free account
             </button>

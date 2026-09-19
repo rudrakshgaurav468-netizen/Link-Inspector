@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  ShieldCheck, 
-  TrendingUp, 
-  Activity, 
-  AlertTriangle, 
-  XCircle, 
-  CheckCircle2, 
-  Play, 
+import {
+  ShieldCheck,
+  TrendingUp,
+  Activity,
+  AlertTriangle,
+  XCircle,
+  CheckCircle2,
+  Play,
   ExternalLink,
   Wrench,
   Sparkles
@@ -26,7 +26,7 @@ export const InteractivePreview: React.FC = () => {
     <section id="product-preview" className="py-20 md:py-28 bg-white border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          <span className="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
             Interactive Command Center
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -42,13 +42,13 @@ export const InteractivePreview: React.FC = () => {
           {/* Dashboard Header Bar */}
           <div className="bg-slate-800/80 rounded-2xl p-4 md:p-6 mb-5 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-slate-700/60 text-white">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold text-xl">
+              <div className="w-12 h-12 rounded-2xl bg-rose-500/20 border border-rose-500/30 text-rose-400 flex items-center justify-center font-bold text-xl">
                 98.9%
               </div>
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="text-lg font-bold text-white">Affiliate Link Health Score</h3>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
                     EXCELLENT
                   </span>
                 </div>
@@ -68,7 +68,7 @@ export const InteractivePreview: React.FC = () => {
                 Open Full App
               </Button>
               <Button
-                variant="emerald"
+                variant="rose"
                 size="sm"
                 isLoading={isScanning}
                 leftIcon={<Play className="w-3.5 h-3.5 fill-current" />}
@@ -87,10 +87,10 @@ export const InteractivePreview: React.FC = () => {
               <p className="text-[11px] text-slate-400 mt-1">342 indexed articles</p>
             </div>
 
-            <div className="bg-slate-800/60 border border-emerald-500/30 rounded-2xl p-4 text-white">
-              <p className="text-[11px] font-semibold text-emerald-400 uppercase">Healthy Links</p>
-              <p className="text-2xl font-extrabold text-emerald-400 mt-1 font-tabular">1,228</p>
-              <p className="text-[11px] text-emerald-400/80 mt-1 flex items-center gap-1">
+            <div className="bg-slate-800/60 border border-rose-500/30 rounded-2xl p-4 text-white">
+              <p className="text-[11px] font-semibold text-rose-400 uppercase">Healthy Links</p>
+              <p className="text-2xl font-extrabold text-rose-400 mt-1 font-tabular">1,228</p>
+              <p className="text-[11px] text-rose-400/80 mt-1 flex items-center gap-1">
                 <CheckCircle2 className="w-3 h-3" /> 99.03% Uptime
               </p>
             </div>
@@ -117,12 +117,12 @@ export const InteractivePreview: React.FC = () => {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h4 className="text-sm font-bold text-slate-200 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-emerald-400" />
+                  <Activity className="w-4 h-4 text-rose-400" />
                   7-Day Link Health & Issue Velocity
                 </h4>
                 <p className="text-xs text-slate-400 mt-0.5">Daily health checks recorded automatically at 2:00 AM UTC</p>
               </div>
-              <span className="text-xs text-emerald-400 font-mono font-semibold">98.9% Health</span>
+              <span className="text-xs text-rose-400 font-mono font-semibold">98.9% Health</span>
             </div>
 
             {/* SVG Chart */}
@@ -131,15 +131,15 @@ export const InteractivePreview: React.FC = () => {
                 <div key={i} className="flex flex-col items-center gap-2">
                   <div className="w-full bg-slate-700/50 rounded-xl h-24 flex flex-col justify-end p-1 relative overflow-hidden group">
                     {/* Healthy bar portion */}
-                    <div 
-                      className="w-full bg-emerald-500 rounded-md transition-all duration-500 group-hover:bg-emerald-400"
+                    <div
+                      className="w-full bg-rose-500 rounded-md transition-all duration-500 group-hover:bg-rose-400"
                       style={{ height: `${(h.healthy / 1250) * 85}%` }}
                     />
                     {/* Issue indicator */}
                     {h.broken > 0 && (
-                      <div 
-                        className="w-full bg-rose-500 rounded-t-md mt-0.5" 
-                        style={{ height: `${Math.min(20, h.broken * 4)}%` }} 
+                      <div
+                        className="w-full bg-rose-500 rounded-t-md mt-0.5"
+                        style={{ height: `${Math.min(20, h.broken * 4)}%` }}
                       />
                     )}
                   </div>
@@ -217,7 +217,7 @@ export const InteractivePreview: React.FC = () => {
             <div className="p-3 bg-slate-50 border-t border-slate-200 text-center">
               <button
                 onClick={() => setActiveView('broken')}
-                className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 transition-colors inline-flex items-center gap-1"
+                className="text-xs font-semibold text-rose-700 hover:text-rose-800 transition-colors inline-flex items-center gap-1"
               >
                 View all 12 detected issues in dashboard <ExternalLink className="w-3 h-3" />
               </button>

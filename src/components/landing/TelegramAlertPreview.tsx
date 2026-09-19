@@ -28,7 +28,7 @@ export const TelegramAlertPreview: React.FC = () => {
 
             <div className="space-y-3">
               <div className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-5 h-5 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 mt-0.5">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                 </div>
                 <p className="text-sm text-slate-700">
@@ -37,7 +37,7 @@ export const TelegramAlertPreview: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-5 h-5 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 mt-0.5">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                 </div>
                 <p className="text-sm text-slate-700">
@@ -46,7 +46,7 @@ export const TelegramAlertPreview: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-5 h-5 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 mt-0.5">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                 </div>
                 <p className="text-sm text-slate-700">
@@ -72,7 +72,7 @@ export const TelegramAlertPreview: React.FC = () => {
             <div className="w-full max-w-md bg-[#17212B] rounded-3xl p-5 shadow-2xl border border-slate-700 text-white relative">
               {/* Telegram App Header */}
               <div className="flex items-center gap-3 pb-3.5 border-b border-slate-700/60">
-                <div className="w-10 h-10 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-bold shadow-md">
+                <div className="w-10 h-10 rounded-full bg-rose-500 text-slate-950 flex items-center justify-center font-bold shadow-md">
                   LG
                 </div>
                 <div>
@@ -121,7 +121,7 @@ export const TelegramAlertPreview: React.FC = () => {
                 <div className="pt-2 grid grid-cols-2 gap-2">
                   <button
                     onClick={() => setFixingLink(sampleBrokenLink)}
-                    className="py-2 px-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                    className="py-2 px-3 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm"
                   >
                     <Wrench className="w-3.5 h-3.5" />
                     Fix Link

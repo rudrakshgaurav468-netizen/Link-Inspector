@@ -3,11 +3,11 @@ import { CheckCircle2, ShieldCheck, Zap, Bell, Search, DollarSign } from 'lucide
 
 export const ValueStrip: React.FC = () => {
   const items = [
-    { label: 'Automatic daily monitoring', icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" /> },
-    { label: 'Affiliate-focused detection', icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" /> },
-    { label: 'Telegram alerts', icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" /> },
-    { label: 'No manual checking', icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" /> },
-    { label: 'Protect lost commissions', icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" /> },
+    { label: 'Automatic daily monitoring', icon: <CheckCircle2 className="w-4 h-4 text-rose-500" /> },
+    { label: 'Affiliate-focused detection', icon: <CheckCircle2 className="w-4 h-4 text-rose-500" /> },
+    { label: 'Telegram alerts', icon: <CheckCircle2 className="w-4 h-4 text-rose-500" /> },
+    { label: 'No manual checking', icon: <CheckCircle2 className="w-4 h-4 text-rose-500" /> },
+    { label: 'Protect lost commissions', icon: <CheckCircle2 className="w-4 h-4 text-rose-500" /> },
   ];
 
   return (

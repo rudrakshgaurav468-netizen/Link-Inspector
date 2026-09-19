@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { 
-  User, 
-  Globe, 
-  Clock, 
-  Send, 
-  Mail, 
-  CreditCard, 
-  ShieldCheck, 
-  Sliders, 
-  CheckCircle2, 
+import {
+  User,
+  Globe,
+  Clock,
+  Send,
+  Mail,
+  CreditCard,
+  ShieldCheck,
+  Sliders,
+  CheckCircle2,
   Save,
   BellRing
 } from 'lucide-react';
@@ -55,27 +55,24 @@ export const SettingsTab: React.FC = () => {
       <div className="flex items-center gap-2 border-b border-slate-200/80 pb-1">
         <button
           onClick={() => setActiveSection('monitoring')}
-          className={`px-4 py-2 text-xs font-bold rounded-xl transition-all ${
-            activeSection === 'monitoring' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-          }`}
+          className={`px-4 py-2 text-xs font-bold rounded-xl transition-all ${activeSection === 'monitoring' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+            }`}
         >
           Monitoring & Crawler Engine
         </button>
 
         <button
           onClick={() => setActiveSection('notifications')}
-          className={`px-4 py-2 text-xs font-bold rounded-xl transition-all ${
-            activeSection === 'notifications' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-          }`}
+          className={`px-4 py-2 text-xs font-bold rounded-xl transition-all ${activeSection === 'notifications' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+            }`}
         >
           Notifications & Telegram
         </button>
 
         <button
           onClick={() => setActiveSection('profile')}
-          className={`px-4 py-2 text-xs font-bold rounded-xl transition-all ${
-            activeSection === 'profile' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-          }`}
+          className={`px-4 py-2 text-xs font-bold rounded-xl transition-all ${activeSection === 'profile' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+            }`}
         >
           Account Profile
         </button>
@@ -95,7 +92,7 @@ export const SettingsTab: React.FC = () => {
               <select
                 value={scanFrequency}
                 onChange={(e) => setScanFrequency(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
               >
                 <option value="daily">Daily Autonomous Scan (Recommended)</option>
                 <option value="twice_daily">Twice Daily (Pro/Business)</option>
@@ -109,7 +106,7 @@ export const SettingsTab: React.FC = () => {
                 type="time"
                 value={preferredScanTime}
                 onChange={(e) => setPreferredScanTime(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
               />
             </div>
 
@@ -118,7 +115,7 @@ export const SettingsTab: React.FC = () => {
               <select
                 value={timeoutSec}
                 onChange={(e) => setTimeoutSec(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
               >
                 <option value="5">5 seconds</option>
                 <option value="10">10 seconds (Default)</option>
@@ -129,7 +126,7 @@ export const SettingsTab: React.FC = () => {
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Affiliate Network Parsers</label>
               <div className="px-3 py-2 bg-slate-100 rounded-xl text-xs text-slate-700 font-semibold flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <ShieldCheck className="w-4 h-4 text-rose-600" />
                 <span>Amazon, ClickBank, ShareASale, Impact, Rakuten active</span>
               </div>
             </div>
@@ -141,7 +138,7 @@ export const SettingsTab: React.FC = () => {
                 type="checkbox"
                 checked={followRedirects}
                 onChange={(e) => setFollowRedirects(e.target.checked)}
-                className="mt-0.5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+                className="mt-0.5 rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
               />
               <div>
                 <span className="text-xs font-bold text-slate-800 block">Follow 301 / 302 Redirect Hops</span>
@@ -156,7 +153,7 @@ export const SettingsTab: React.FC = () => {
                 type="checkbox"
                 checked={availabilityDetection}
                 onChange={(e) => setAvailabilityDetection(e.target.checked)}
-                className="mt-0.5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+                className="mt-0.5 rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
               />
               <div>
                 <span className="text-xs font-bold text-slate-800 block">Deep Product Availability & Out-of-Stock Detection</span>
@@ -168,7 +165,7 @@ export const SettingsTab: React.FC = () => {
           </div>
 
           <div className="pt-4 flex justify-end">
-            <Button variant="emerald" size="md" leftIcon={<Save className="w-4 h-4" />} onClick={handleSave}>
+            <Button variant="rose" size="md" leftIcon={<Save className="w-4 h-4" />} onClick={handleSave}>
               Save Engine Settings
             </Button>
           </div>
@@ -215,7 +212,7 @@ export const SettingsTab: React.FC = () => {
                 type="checkbox"
                 checked={notifyBroken}
                 onChange={(e) => setNotifyBroken(e.target.checked)}
-                className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+                className="rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
               />
               <span>Broken affiliate links detected (HTTP 404, 410, 500, timeouts)</span>
             </label>
@@ -225,7 +222,7 @@ export const SettingsTab: React.FC = () => {
                 type="checkbox"
                 checked={notifyUnavailable}
                 onChange={(e) => setNotifyUnavailable(e.target.checked)}
-                className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+                className="rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
               />
               <span>Product goes out of stock or becomes unavailable</span>
             </label>
@@ -235,7 +232,7 @@ export const SettingsTab: React.FC = () => {
                 type="checkbox"
                 checked={notifyServerErrors}
                 onChange={(e) => setNotifyServerErrors(e.target.checked)}
-                className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+                className="rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
               />
               <span>Affiliate redirect targets fail with 502/503 server error</span>
             </label>
@@ -245,14 +242,14 @@ export const SettingsTab: React.FC = () => {
                 type="checkbox"
                 checked={notifyScanComplete}
                 onChange={(e) => setNotifyScanComplete(e.target.checked)}
-                className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+                className="rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
               />
               <span>Daily scan completes successfully (Summary digest)</span>
             </label>
           </div>
 
           <div className="pt-4 flex justify-end">
-            <Button variant="emerald" size="md" leftIcon={<Save className="w-4 h-4" />} onClick={handleSave}>
+            <Button variant="rose" size="md" leftIcon={<Save className="w-4 h-4" />} onClick={handleSave}>
               Save Notification Preferences
             </Button>
           </div>
@@ -274,7 +271,7 @@ export const SettingsTab: React.FC = () => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
               />
             </div>
 
@@ -284,13 +281,13 @@ export const SettingsTab: React.FC = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
               />
             </div>
           </div>
 
           <div className="pt-4 flex justify-start">
-            <Button variant="emerald" size="md" leftIcon={<Save className="w-4 h-4" />} onClick={handleSave}>
+            <Button variant="rose" size="md" leftIcon={<Save className="w-4 h-4" />} onClick={handleSave}>
               Save Profile
             </Button>
           </div>

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { 
-  Target, 
-  Search, 
-  Play, 
-  ExternalLink, 
-  Copy, 
-  Mail, 
-  CheckCircle2, 
-  TrendingUp, 
-  Sparkles, 
-  Globe, 
+import {
+  Target,
+  Search,
+  Play,
+  ExternalLink,
+  Copy,
+  Mail,
+  CheckCircle2,
+  TrendingUp,
+  Sparkles,
+  Globe,
   ArrowRight,
   ShieldCheck
 } from 'lucide-react';
@@ -48,7 +48,7 @@ export const CompetitorSpotterTab: React.FC = () => {
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-elevated flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 text-xs font-semibold border border-rose-500/20 mb-3">
             <Target className="w-3.5 h-3.5" />
             <span>SEO Backlink Opportunity Engine</span>
           </div>
@@ -68,13 +68,13 @@ export const CompetitorSpotterTab: React.FC = () => {
               value={competitorInput}
               onChange={(e) => setCompetitorInput(e.target.value)}
               placeholder="e.g. wirecutter.com"
-              className="w-full pl-9 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full pl-9 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500"
             />
           </div>
 
           <Button
             type="submit"
-            variant="emerald"
+            variant="rose"
             size="md"
             isLoading={isScanning}
             leftIcon={<Search className="w-4 h-4" />}
@@ -120,7 +120,7 @@ export const CompetitorSpotterTab: React.FC = () => {
                     href={opp.articleUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs text-emerald-600 hover:underline inline-flex items-center gap-1 mt-0.5"
+                    className="text-xs text-rose-600 hover:underline inline-flex items-center gap-1 mt-0.5"
                   >
                     <span>{opp.articleUrl}</span>
                     <ExternalLink className="w-3 h-3" />
@@ -135,7 +135,7 @@ export const CompetitorSpotterTab: React.FC = () => {
                   </div>
                   <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-center">
                     <span className="text-[10px] uppercase font-bold text-slate-400 block">Est. Traffic</span>
-                    <span className="text-sm font-extrabold text-emerald-700 font-tabular">{opp.estimatedTraffic.toLocaleString()}</span>
+                    <span className="text-sm font-extrabold text-rose-700 font-tabular">{opp.estimatedTraffic.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -177,7 +177,7 @@ export const CompetitorSpotterTab: React.FC = () => {
                     Copy Outreach Pitch
                   </Button>
                   <Button
-                    variant="emerald"
+                    variant="rose"
                     size="sm"
                     leftIcon={<Mail className="w-3.5 h-3.5" />}
                     onClick={() => {

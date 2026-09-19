@@ -46,7 +46,7 @@ export const AFFILIATE_PATTERNS: AffiliatePattern[] = [
       /tkqlhce\.com/i,
       /kqzyfj\.com/i,
     ],
-    badgeColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
+    badgeColor: 'bg-rose-500/10 text-rose-600 border-rose-500/20',
   },
   {
     network: 'Impact',

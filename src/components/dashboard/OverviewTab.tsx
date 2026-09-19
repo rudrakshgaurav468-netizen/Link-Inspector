@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { 
-  ShieldCheck, 
-  Link2, 
-  CheckCircle2, 
-  XCircle, 
-  AlertTriangle, 
-  Play, 
-  Clock, 
-  ArrowUpRight, 
-  Wrench, 
-  ExternalLink, 
-  Calendar, 
-  Activity, 
+import {
+  ShieldCheck,
+  Link2,
+  CheckCircle2,
+  XCircle,
+  AlertTriangle,
+  Play,
+  Clock,
+  ArrowUpRight,
+  Wrench,
+  ExternalLink,
+  Calendar,
+  Activity,
   Sparkles,
   Search,
   Eye,
@@ -33,20 +33,21 @@ import { QuickLinkAuditor } from './QuickLinkAuditor';
 import { HEALTH_HISTORY_7_DAYS } from '../../data/mockData';
 
 export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = '' }) => {
-  const { 
-    user, 
-    activeWebsite, 
-    affiliateLinks, 
-    startScan, 
-    isScanning, 
-    setSelectedLinkForDetail, 
+  const {
+    user,
+    activeWebsite,
+    affiliateLinks,
+    startScan,
+    isScanning,
+    setSelectedLinkForDetail,
     setFixingLink,
     setSelectedLinkForRedirect,
     applyWaybackFallback,
     setActiveView,
     setIsWhiteLabelModalOpen,
     setIsWebhooksModalOpen,
-    totalRevenueProtected 
+    totalRevenueProtected,
+    backendHealth
   } = useApp();
 
   const [timeRange, setTimeRange] = useState<'7d' | '30d' | '90d'>('7d');
@@ -71,15 +72,15 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
     .filter(l => l.status === 'broken' || l.status === 'warning')
     .reduce((acc, l) => acc + (l.revenueImpact?.estimatedMonthlyLoss || 0), 0);
 
-  const healthScore = currentWebsiteLinks.length > 0 
+  const healthScore = currentWebsiteLinks.length > 0
     ? ((healthyLinks.length / currentWebsiteLinks.length) * 100).toFixed(1)
     : '100.0';
 
   const filteredIssues = currentWebsiteLinks
     .filter(l => l.status === 'broken' || l.status === 'warning')
-    .filter(l => 
-      !searchQuery || 
-      l.articleTitle.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    .filter(l =>
+      !searchQuery ||
+      l.articleTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
       l.url.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (l.errorType && l.errorType.toLowerCase().includes(searchQuery.toLowerCase()))
     )
@@ -91,8 +92,7 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
       <div className="bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 rounded-3xl p-6 text-white border border-slate-800 shadow-elevated relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div className="space-y-2 z-10 max-w-2xl">
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-rose-500/20 text-rose-300 border border-rose-500/30 flex items-center gap-1.5">
               Active Domain: {activeWebsite?.domain || 'Active Domain'}
             </span>
             <span className="text-xs text-slate-400">Live Anti-Block & Stealth Probing Active</span>
@@ -100,9 +100,9 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
 
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             {totalRevenueAtRisk === 0 ? (
-              <span className="text-emerald-400">100% Protected • 0 Revenue Loss Risk</span>
+              <span className="text-rose-400">100% Protected • 0 Revenue Loss Risk</span>
             ) : (
-              <>Protecting <span className="text-emerald-400 font-mono">${(activeWebsite?.totalMonthlyLossAtRisk || 2840).toLocaleString()}/mo</span> revenue</>
+              <>Protecting <span className="text-rose-400 font-mono">${(totalRevenueAtRisk || activeWebsite?.totalMonthlyLossAtRisk || 0).toLocaleString()}/mo</span> revenue</>
             )}
           </h2>
 
@@ -121,7 +121,7 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
             variant="secondary"
             size="md"
             className="bg-slate-800 hover:bg-slate-700 text-white border-slate-700 text-xs"
-            leftIcon={<Target className="w-3.5 h-3.5 text-emerald-400" />}
+            leftIcon={<Target className="w-3.5 h-3.5 text-rose-400" />}
             onClick={() => setActiveView('competitors')}
           >
             Competitor Spotter
@@ -138,7 +138,7 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
           </Button>
 
           <Button
-            variant="emerald"
+            variant="rose"
             size="md"
             isLoading={isScanning}
             leftIcon={<Play className="w-3.5 h-3.5 fill-current" />}
@@ -159,8 +159,8 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
           value={`$${totalRevenueAtRisk.toLocaleString()}/mo`}
           subtitle={totalRevenueAtRisk === 0 ? 'Zero commission risk' : 'GA4 page traffic weighted'}
           trend={{ value: `${totalIssuesCount} issues`, isPositive: totalRevenueAtRisk === 0, label: 'Risk' }}
-          icon={<DollarSign className={`w-5 h-5 ${totalRevenueAtRisk === 0 ? 'text-emerald-600' : 'text-rose-600'}`} />}
-          variant={totalRevenueAtRisk === 0 ? 'emerald' : 'rose'}
+          icon={<DollarSign className="w-5 h-5 text-rose-600" />}
+          variant="rose"
           onClick={() => setActiveView('broken')}
         />
 
@@ -179,8 +179,8 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
           value={healthyLinks.length}
           subtitle={`${healthScore}% uptime verified`}
           trend={{ value: `${healthyLinks.length} active`, isPositive: true, label: 'Uptime' }}
-          icon={<CheckCircle2 className="w-5 h-5 text-emerald-600" />}
-          variant="emerald"
+          icon={<CheckCircle2 className="w-5 h-5 text-rose-600" />}
+          variant="rose"
           onClick={() => setActiveView('links')}
         />
 
@@ -188,8 +188,8 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
           title="Broken Issues"
           value={brokenLinks.length}
           subtitle={brokenLinks.length === 0 ? 'No 404s detected' : '404, 410, timeouts, 502'}
-          icon={<XCircle className={`w-5 h-5 ${brokenLinks.length === 0 ? 'text-emerald-600' : 'text-rose-600'}`} />}
-          variant={brokenLinks.length === 0 ? 'emerald' : 'rose'}
+          icon={<XCircle className="w-5 h-5 text-rose-600" />}
+          variant={brokenLinks.length === 0 ? 'rose' : 'amber'}
           onClick={() => setActiveView('broken')}
         />
 
@@ -198,8 +198,8 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
           value={`${healthScore}%`}
           subtitle="Commission earning efficiency"
           trend={{ value: `${healthScore}%`, isPositive: true, label: 'Score' }}
-          icon={<ShieldCheck className="w-5 h-5 text-emerald-600" />}
-          variant="emerald"
+          icon={<ShieldCheck className="w-5 h-5 text-rose-600" />}
+          variant="rose"
         />
       </div>
 
@@ -210,7 +210,7 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
               <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-emerald-600" />
+                <Activity className="w-4 h-4 text-rose-600" />
                 Affiliate Revenue Protection & Health Velocity
               </h3>
               <p className="text-xs text-slate-500 mt-0.5">
@@ -257,18 +257,18 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
 
                     <div className="w-full max-w-[42px] bg-slate-100 rounded-xl overflow-hidden flex flex-col justify-end p-1 relative h-36">
                       <div
-                        className={`w-full rounded-lg transition-all duration-300 ${isToday ? 'bg-emerald-600' : 'bg-emerald-500/80 group-hover:bg-emerald-500'}`}
+                        className={`w-full rounded-lg transition-all duration-300 ${isToday ? 'bg-rose-600' : 'bg-rose-500/80 group-hover:bg-rose-500'}`}
                         style={{ height: `${healthyPercent * 0.85}%` }}
                       />
                       {item.broken > 0 && (
                         <div
-                          className="w-full bg-rose-500 rounded-t-sm mt-0.5"
+                          className="w-full bg-slate-800 rounded-t-sm mt-0.5"
                           style={{ height: `${brokenHeight}px` }}
                         />
                       )}
                     </div>
 
-                    <span className={`text-xs font-semibold mt-2 ${isToday ? 'text-emerald-700 font-bold' : 'text-slate-500'}`}>
+                    <span className={`text-xs font-semibold mt-2 ${isToday ? 'text-rose-700 font-bold' : 'text-slate-500'}`}>
                       {item.day}
                     </span>
                     <span className="text-[10px] text-slate-400">${item.revenueProtected}</span>
@@ -280,10 +280,10 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
             <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
               <div className="flex items-center gap-4">
                 <span className="flex items-center gap-1.5 font-medium">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Healthy (98.9%)
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500" /> Healthy (98.9%)
                 </span>
                 <span className="flex items-center gap-1.5 font-medium">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500" /> Broken ($2,840 Risk)
+                  <span className="w-2.5 h-2.5 rounded-full bg-slate-800" /> Issues Fixed
                 </span>
               </div>
               <span className="text-[11px] text-slate-400 font-mono">Crawler Mode: Anti-Block Stealth (Residential Proxy)</span>
@@ -296,33 +296,45 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
           <div>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                <Bot className="w-4 h-4 text-emerald-600" />
-                Anti-Block & SPA Telemetry
+                <Bot className="w-4 h-4 text-rose-600" />
+                Live Crawler & SPA Telemetry
               </h3>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                Playwright JS Active
+              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                (activeWebsite?.crawlerEngineMode === 'headless_spa_playwright' || backendHealth?.crawlerMode === 'headless_spa_playwright')
+                  ? 'bg-rose-100 text-rose-800'
+                  : 'bg-slate-100 text-slate-700'
+              }`}>
+                {(activeWebsite?.crawlerEngineMode === 'headless_spa_playwright' || backendHealth?.crawlerMode === 'headless_spa_playwright')
+                  ? 'Playwright JS Active'
+                  : 'Standard HTTP Parser'}
               </span>
             </div>
 
             <div className="space-y-3 divide-y divide-slate-100 text-xs">
               <div className="flex items-center justify-between pt-1">
-                <span className="text-slate-500">SPA Javascript Engine:</span>
-                <span className="font-semibold text-slate-900">Headless Chromium (Playwright)</span>
+                <span className="text-slate-500">Render Engine:</span>
+                <span className="font-semibold text-slate-900">
+                  {(activeWebsite?.crawlerEngineMode === 'headless_spa_playwright' || backendHealth?.crawlerMode === 'headless_spa_playwright')
+                    ? 'Headless Chromium (Playwright)'
+                    : 'Axios + Cheerio Fast Parser'}
+                </span>
               </div>
 
               <div className="flex items-center justify-between pt-3">
-                <span className="text-slate-500">Anti-Bot Proxy Pool:</span>
-                <span className="font-semibold text-emerald-700">18 Residential Rotating IPs</span>
+                <span className="text-slate-500">Link Extraction Scope:</span>
+                <span className="font-semibold text-rose-700">All Links (100% DOM Anchors)</span>
               </div>
 
               <div className="flex items-center justify-between pt-3">
-                <span className="text-slate-500">False-Positive 403 Rate:</span>
-                <span className="font-mono font-bold text-slate-900">0.00% (Bypassed)</span>
+                <span className="text-slate-500">Internal Domain Filter:</span>
+                <span className="font-mono font-bold text-slate-900">
+                  Disabled (Internal & Anchor Routes Tracked)
+                </span>
               </div>
 
               <div className="flex items-center justify-between pt-3">
                 <span className="text-slate-500">1-Click 301 Redirect:</span>
-                <span className="font-semibold text-slate-800">Cloudflare & Edge Ready</span>
+                <span className="font-semibold text-slate-800">Edge & CMS Ready</span>
               </div>
             </div>
           </div>
@@ -382,7 +394,7 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
                   <td className="py-3.5 px-5">
                     <p className="font-bold text-slate-900 truncate max-w-sm">{link.articleTitle}</p>
                     <p className="text-[11px] text-slate-400 truncate mt-0.5">Anchor: "{link.anchorText}"</p>
-                    
+
                     {/* Direct Broken URL Box */}
                     <div className="mt-1.5 flex items-center justify-between gap-2 bg-rose-50/90 border border-rose-200/90 rounded-lg p-1.5 max-w-sm">
                       <div className="flex items-center gap-1.5 truncate min-w-0">
@@ -405,8 +417,8 @@ export const OverviewTab: React.FC<{ searchQuery?: string }> = ({ searchQuery = 
                         >
                           {copiedId === link.id ? (
                             <>
-                              <Check className="w-2.5 h-2.5 text-emerald-600" />
-                              <span className="text-emerald-700">Copied!</span>
+                              <Check className="w-2.5 h-2.5 text-rose-600" />
+                              <span className="text-rose-700">Copied!</span>
                             </>
                           ) : (
                             <>

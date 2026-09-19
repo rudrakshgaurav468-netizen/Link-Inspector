@@ -8,12 +8,12 @@ export default {
     extend: {
       colors: {
         brand: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
+          50: '#fff1f2',
+          100: '#ffe4e6',
+          200: '#fecdd3',
+          500: '#f43f5e',
+          600: '#e11d48',
+          700: '#be123c',
         },
         primary: {
           50: '#f0f9ff',
@@ -36,7 +36,7 @@ export default {
         'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.02)',
         'card': '0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02)',
         'elevated': '0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04)',
-        'glow-emerald': '0 0 20px -5px rgba(16, 185, 129, 0.3)',
+        'glow-emerald': '0 0 20px -5px rgba(244, 63, 94, 0.3)',
         'glow-rose': '0 0 20px -5px rgba(244, 63, 94, 0.3)',
         'glow-amber': '0 0 20px -5px rgba(245, 158, 11, 0.3)',
       },

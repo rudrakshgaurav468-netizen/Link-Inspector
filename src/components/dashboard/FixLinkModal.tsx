@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Wrench, 
-  Sparkles, 
-  Zap, 
-  History, 
-  CheckCircle2, 
-  Link2, 
-  ExternalLink, 
-  Loader2, 
-  TrendingDown, 
+import {
+  Wrench,
+  Sparkles,
+  Zap,
+  History,
+  CheckCircle2,
+  Link2,
+  ExternalLink,
+  Loader2,
+  TrendingDown,
   Globe,
   Radio
 } from 'lucide-react';
@@ -20,12 +20,12 @@ import { RevenueLossBadge } from './RevenueLossBadge';
 import { HeadlessCmsType } from '../../types';
 
 export const FixLinkModal: React.FC = () => {
-  const { 
-    fixingLink, 
-    setFixingLink, 
-    fixLink, 
-    applyWaybackFallback, 
-    applyHeadlessRedirect 
+  const {
+    fixingLink,
+    setFixingLink,
+    fixLink,
+    applyWaybackFallback,
+    applyHeadlessRedirect
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'headless' | 'wayback' | 'manual'>('headless');
@@ -85,7 +85,7 @@ export const FixLinkModal: React.FC = () => {
       onClose={() => setFixingLink(null)}
       title={
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center">
             <Wrench className="w-4 h-4" />
           </div>
           <span className="text-base font-bold text-slate-900">The Fix Engine: Instant Remediation</span>
@@ -112,9 +112,8 @@ export const FixLinkModal: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveTab('headless')}
-            className={`flex-1 py-2 px-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 ${
-              activeTab === 'headless' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-            }`}
+            className={`flex-1 py-2 px-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'headless' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              }`}
           >
             <Zap className="w-3.5 h-3.5 text-amber-500" />
             <span>1-Click 301 Redirect</span>
@@ -124,9 +123,8 @@ export const FixLinkModal: React.FC = () => {
             <button
               type="button"
               onClick={() => setActiveTab('wayback')}
-              className={`flex-1 py-2 px-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 ${
-                activeTab === 'wayback' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`flex-1 py-2 px-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'wayback' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               <History className="w-3.5 h-3.5 text-blue-600" />
               <span>Wayback Fallback</span>
@@ -136,9 +134,8 @@ export const FixLinkModal: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveTab('manual')}
-            className={`flex-1 py-2 px-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 ${
-              activeTab === 'manual' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-            }`}
+            className={`flex-1 py-2 px-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'manual' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              }`}
           >
             <Link2 className="w-3.5 h-3.5 text-slate-600" />
             <span>Manual Entry</span>
@@ -159,9 +156,8 @@ export const FixLinkModal: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setSelectedCms('cloudflare_worker')}
-                className={`p-3 rounded-xl border text-left transition-all ${
-                  selectedCms === 'cloudflare_worker' ? 'border-emerald-500 bg-emerald-50/60 font-bold text-emerald-900' : 'border-slate-200 bg-white'
-                }`}
+                className={`p-3 rounded-xl border text-left transition-all ${selectedCms === 'cloudflare_worker' ? 'border-rose-500 bg-rose-50/60 font-bold text-rose-900' : 'border-slate-200 bg-white'
+                  }`}
               >
                 <span>☁️ Cloudflare Worker</span>
                 <span className="block text-[10px] text-slate-400 font-normal mt-0.5">&lt;10ms Global Edge Routing</span>
@@ -170,9 +166,8 @@ export const FixLinkModal: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setSelectedCms('wordpress_rest_api')}
-                className={`p-3 rounded-xl border text-left transition-all ${
-                  selectedCms === 'wordpress_rest_api' ? 'border-emerald-500 bg-emerald-50/60 font-bold text-emerald-900' : 'border-slate-200 bg-white'
-                }`}
+                className={`p-3 rounded-xl border text-left transition-all ${selectedCms === 'wordpress_rest_api' ? 'border-rose-500 bg-rose-50/60 font-bold text-rose-900' : 'border-slate-200 bg-white'
+                  }`}
               >
                 <span>⚡ WordPress REST API</span>
                 <span className="block text-[10px] text-slate-400 font-normal mt-0.5">Auto-push Redirection Plugin</span>
@@ -191,7 +186,7 @@ export const FixLinkModal: React.FC = () => {
 
             <div className="flex justify-end pt-1">
               <Button
-                variant="emerald"
+                variant="rose"
                 size="md"
                 isLoading={isValidating}
                 leftIcon={<Zap className="w-4 h-4 fill-current" />}
@@ -232,7 +227,7 @@ export const FixLinkModal: React.FC = () => {
               </a>
 
               <Button
-                variant="emerald"
+                variant="rose"
                 size="md"
                 isLoading={isValidating}
                 leftIcon={<History className="w-4 h-4" />}
@@ -260,7 +255,7 @@ export const FixLinkModal: React.FC = () => {
                 value={newUrl}
                 onChange={(e) => setNewUrl(e.target.value)}
                 placeholder="https://amzn.to/your-new-asin"
-                className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono focus:outline-none focus:ring-2 focus:ring-rose-500/20"
               />
             </div>
 
@@ -275,8 +270,8 @@ export const FixLinkModal: React.FC = () => {
             </div>
 
             {isValidating && (
-              <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 flex items-center gap-2 font-mono">
-                <Loader2 className="w-4 h-4 animate-spin text-emerald-600" />
+              <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-800 flex items-center gap-2 font-mono">
+                <Loader2 className="w-4 h-4 animate-spin text-rose-600" />
                 <span>{validationStep}</span>
               </div>
             )}
@@ -284,7 +279,7 @@ export const FixLinkModal: React.FC = () => {
             <div className="flex justify-end pt-2">
               <Button
                 type="submit"
-                variant="emerald"
+                variant="rose"
                 size="md"
                 isLoading={isValidating}
                 rightIcon={<CheckCircle2 className="w-4 h-4" />}

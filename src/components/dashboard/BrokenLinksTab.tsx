@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { 
-  AlertOctagon, 
-  XCircle, 
-  AlertTriangle, 
-  Wrench, 
-  Eye, 
-  ExternalLink, 
-  CheckCircle2, 
-  Sparkles, 
-  Zap, 
-  History, 
+import {
+  AlertOctagon,
+  XCircle,
+  AlertTriangle,
+  Wrench,
+  Eye,
+  ExternalLink,
+  CheckCircle2,
+  Sparkles,
+  Zap,
+  History,
   TrendingDown,
   ArrowUpDown,
   Filter,
@@ -28,23 +28,23 @@ import { RevenueLossBadge } from './RevenueLossBadge';
 import { QuickLinkAuditor } from './QuickLinkAuditor';
 import { AffiliateLink } from '../../types';
 
-export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (q: string) => void }> = ({ 
+export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (q: string) => void }> = ({
   searchQuery = '',
   setSearchQuery
 }) => {
-  const { 
-    affiliateLinks, 
+  const {
+    affiliateLinks,
     activeWebsite,
     websites,
     setActiveWebsiteId,
     setActiveView,
     setIsAddWebsiteModalOpen,
-    setSelectedLinkForDetail, 
-    setFixingLink, 
+    setSelectedLinkForDetail,
+    setFixingLink,
     setSelectedLinkForRedirect,
     applyWaybackFallback,
     checkLinkNow,
-    addWebsite 
+    addWebsite
   } = useApp();
 
   const [issueFilter, setIssueFilter] = useState<'all' | 'critical' | 'broken' | 'warning'>('all');
@@ -67,7 +67,7 @@ export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (
   const totalIssues = allBrokenAndWarnings.length;
 
   const totalMonthlyLoss = allBrokenAndWarnings.reduce(
-    (acc, l) => acc + (l.revenueImpact?.estimatedMonthlyLoss || 0), 
+    (acc, l) => acc + (l.revenueImpact?.estimatedMonthlyLoss || 0),
     0
   );
 
@@ -185,33 +185,29 @@ export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (
         <div className="flex items-center gap-1.5 overflow-x-auto">
           <button
             onClick={() => setIssueFilter('all')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-              issueFilter === 'all' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-            }`}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${issueFilter === 'all' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+              }`}
           >
             All Issues ({totalIssues})
           </button>
           <button
             onClick={() => setIssueFilter('critical')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
-              issueFilter === 'critical' ? 'bg-rose-700 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-            }`}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${issueFilter === 'critical' ? 'bg-rose-700 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+              }`}
           >
             🔥 Critical Revenue Loss ({allBrokenAndWarnings.filter(l => l.revenueImpact?.priority === 'critical').length})
           </button>
           <button
             onClick={() => setIssueFilter('broken')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
-              issueFilter === 'broken' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-            }`}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${issueFilter === 'broken' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+              }`}
           >
             404/410/500 ({brokenList.length})
           </button>
           <button
             onClick={() => setIssueFilter('warning')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
-              issueFilter === 'warning' ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-            }`}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${issueFilter === 'warning' ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+              }`}
           >
             Out of Stock ({warningList.length})
           </button>
@@ -254,7 +250,7 @@ export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (
                       <p className="text-[11px] text-slate-400 truncate mt-0.5">
                         Anchor: "{link.anchorText}" • Network: {link.network}
                       </p>
-                      
+
                       {/* Direct Broken URL Box with Open and 1-Click Copy */}
                       <div className="mt-2 flex items-center justify-between gap-2 bg-rose-50/90 border border-rose-200/90 rounded-xl p-2 max-w-md shadow-xs">
                         <div className="flex items-center gap-1.5 truncate min-w-0">
@@ -277,8 +273,8 @@ export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (
                           >
                             {copiedId === link.id ? (
                               <>
-                                <Check className="w-3 h-3 text-emerald-600" />
-                                <span className="text-emerald-700">Copied!</span>
+                                <Check className="w-3 h-3 text-rose-600" />
+                                <span className="text-rose-700">Copied!</span>
                               </>
                             ) : (
                               <>
@@ -372,9 +368,8 @@ export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (
         ) : (
           /* EMPTY STATE WHEN FILTER/SEARCH MATCHES 0 OR WEBSITE HAS 0 ISSUES */
           <div className="p-12 text-center space-y-4">
-            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto ${
-              totalIssues === 0 ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-400'
-            }`}>
+            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto ${totalIssues === 0 ? 'bg-rose-100 text-rose-600' : 'bg-slate-100 text-slate-400'
+              }`}>
               {totalIssues === 0 ? (
                 <CheckCircle2 className="w-7 h-7" />
               ) : (
@@ -384,17 +379,17 @@ export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (
 
             <div className="max-w-md mx-auto space-y-1">
               <h4 className="text-base font-bold text-slate-900">
-                {totalIssues === 0 
+                {totalIssues === 0
                   ? `🎉 0 Broken Links on ${activeWebsite?.domain || 'this website'}`
-                  : searchQuery 
-                    ? `No broken links match "${searchQuery}"` 
+                  : searchQuery
+                    ? `No broken links match "${searchQuery}"`
                     : 'No issues found for this filter'}
               </h4>
               <p className="text-xs text-slate-500 leading-relaxed">
-                {totalIssues === 0 
+                {totalIssues === 0
                   ? `All ${currentWebsiteLinks.length} links on ${activeWebsite?.domain || 'this website'} are 100% healthy, verified reachable with HTTP 200 OK, and earning commissions.`
-                  : searchQuery 
-                    ? `Try searching for another keyword or clear the search filter.` 
+                  : searchQuery
+                    ? `Try searching for another keyword or clear the search filter.`
                     : 'All links in this category are healthy.'}
               </p>
             </div>
@@ -402,7 +397,7 @@ export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
               {totalIssues === 0 ? (
                 <Button
-                  variant="emerald"
+                  variant="rose"
                   size="md"
                   rightIcon={<ArrowRight className="w-4 h-4" />}
                   onClick={() => setActiveView('links')}
@@ -414,7 +409,7 @@ export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (
                   <>
                     {setSearchQuery && (
                       <Button
-                        variant="emerald"
+                        variant="rose"
                         size="md"
                         leftIcon={<RotateCcw className="w-4 h-4" />}
                         onClick={() => setSearchQuery('')}
@@ -427,7 +422,7 @@ export const BrokenLinksTab: React.FC<{ searchQuery?: string; setSearchQuery?: (
                       <Button
                         variant="secondary"
                         size="md"
-                        leftIcon={<Sparkles className="w-4 h-4 text-emerald-600" />}
+                        leftIcon={<Sparkles className="w-4 h-4 text-rose-600" />}
                         onClick={async () => {
                           const domainToScan = searchQuery.trim();
                           setSearchQuery && setSearchQuery('');

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { 
-  Globe, 
-  Plus, 
-  Play, 
-  Settings, 
-  Trash2, 
-  ExternalLink, 
-  FileText, 
-  Link2, 
-  CheckCircle2, 
-  AlertTriangle, 
-  XCircle, 
-  Clock, 
+import {
+  Globe,
+  Plus,
+  Play,
+  Settings,
+  Trash2,
+  ExternalLink,
+  FileText,
+  Link2,
+  CheckCircle2,
+  AlertTriangle,
+  XCircle,
+  Clock,
   Send,
   MoreVertical
 } from 'lucide-react';
@@ -20,15 +20,15 @@ import { Button } from '../common/Button';
 import { StatusBadge } from '../common/StatusBadge';
 
 export const WebsitesTab: React.FC = () => {
-  const { 
-    websites, 
-    activeWebsiteId, 
-    setActiveWebsiteId, 
-    startScan, 
-    isScanning, 
-    deleteWebsite, 
+  const {
+    websites,
+    activeWebsiteId,
+    setActiveWebsiteId,
+    startScan,
+    isScanning,
+    deleteWebsite,
     setIsAddWebsiteModalOpen,
-    setActiveView 
+    setActiveView
   } = useApp();
 
   return (
@@ -43,7 +43,7 @@ export const WebsitesTab: React.FC = () => {
         </div>
 
         <Button
-          variant="emerald"
+          variant="rose"
           size="md"
           leftIcon={<Plus className="w-4 h-4" />}
           onClick={() => setIsAddWebsiteModalOpen(true)}
@@ -60,13 +60,12 @@ export const WebsitesTab: React.FC = () => {
           return (
             <div
               key={website.id}
-              className={`bg-white rounded-2xl border p-6 shadow-card transition-all duration-200 flex flex-col justify-between relative ${
-                isActive ? 'border-2 border-emerald-500 ring-4 ring-emerald-500/10' : 'border-slate-200/80 hover:border-slate-300'
-              }`}
+              className={`bg-white rounded-2xl border p-6 shadow-card transition-all duration-200 flex flex-col justify-between relative ${isActive ? 'border-2 border-rose-500 ring-4 ring-rose-500/10' : 'border-slate-200/80 hover:border-slate-300'
+                }`}
             >
               {isActive && (
                 <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-rose-100 text-rose-800 px-2.5 py-0.5 rounded-full border border-rose-200">
                     Active Domain
                   </span>
                 </div>
@@ -75,8 +74,8 @@ export const WebsitesTab: React.FC = () => {
               <div>
                 {/* Domain Header */}
                 <div className="flex items-start gap-3.5 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-900 text-emerald-400 flex items-center justify-center shrink-0 shadow-subtle">
-                    <Globe className="w-6 h-6 text-emerald-400" />
+                  <div className="w-12 h-12 rounded-2xl bg-slate-900 text-rose-400 flex items-center justify-center shrink-0 shadow-subtle">
+                    <Globe className="w-6 h-6 text-rose-400" />
                   </div>
                   <div className="min-w-0 pr-16">
                     <h3 className="text-base font-bold text-slate-900 truncate">{website.name}</h3>
@@ -84,7 +83,7 @@ export const WebsitesTab: React.FC = () => {
                       href={website.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs text-slate-500 hover:text-emerald-700 flex items-center gap-1 mt-0.5 truncate"
+                      className="text-xs text-slate-500 hover:text-rose-700 flex items-center gap-1 mt-0.5 truncate"
                     >
                       <span>{website.domain}</span>
                       <ExternalLink className="w-3 h-3" />
@@ -104,7 +103,7 @@ export const WebsitesTab: React.FC = () => {
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase">Issues</span>
-                    <p className={`text-sm font-bold mt-0.5 ${website.brokenCount > 0 ? 'text-rose-600' : 'text-emerald-600'}`}>
+                    <p className={`text-sm font-bold mt-0.5 ${website.brokenCount > 0 ? 'text-rose-600' : 'text-slate-600'}`}>
                       {website.brokenCount + website.warningCount}
                     </p>
                   </div>
@@ -126,7 +125,7 @@ export const WebsitesTab: React.FC = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Next Scheduled Scan:</span>
-                    <span className="font-medium text-emerald-700">{website.nextScanAt}</span>
+                    <span className="font-medium text-rose-700">{website.nextScanAt}</span>
                   </div>
                 </div>
               </div>

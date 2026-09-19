@@ -58,7 +58,7 @@ export const App: React.FC = () => {
     activeView === 'how-it-works'
   ) {
     return (
-      <div className="min-h-screen bg-white flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
+      <div className="min-h-screen bg-gradient-to-b from-[#FFF0F4] via-[#FFF5F8] to-white flex flex-col justify-between selection:bg-rose-500 selection:text-white">
         <Navbar />
         <main className="flex-grow">
           <HeroSection />
@@ -95,7 +95,7 @@ export const App: React.FC = () => {
 
   // Dashboard App View
   return (
-    <div className="flex h-screen bg-[#F8FAFC] overflow-hidden selection:bg-emerald-500 selection:text-white">
+    <div className="flex h-screen bg-[#FFF0F4] overflow-hidden selection:bg-rose-500 selection:text-white">
       {/* Collapsible Sidebar */}
       <Sidebar />
 

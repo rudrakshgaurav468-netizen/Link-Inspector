@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShieldCheck, ArrowRight, Menu, X, Sparkles } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { Button } from '../common/Button';
+import { Logo } from '../common/Logo';
 
 export const Navbar: React.FC = () => {
   const { setActiveView, setIsAuthModalOpen, setAuthModalMode, user } = useApp();
@@ -29,48 +30,40 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div 
+          <div
             onClick={() => setActiveView('landing')}
-            className="flex items-center gap-2.5 cursor-pointer group"
+            className="cursor-pointer group"
           >
-            <div className="w-9 h-9 rounded-xl bg-slate-900 text-emerald-400 flex items-center justify-center shadow-subtle group-hover:scale-105 transition-transform">
-              <ShieldCheck className="w-5 h-5 text-emerald-400" />
-            </div>
-            <div>
-              <span className="text-lg font-bold tracking-tight text-slate-900 flex items-center gap-1">
-                Link<span className="text-emerald-600">Guard</span>
-              </span>
-              <span className="block text-[10px] font-semibold text-slate-600 tracking-wider -mt-1 uppercase">Affiliate Monitor</span>
-            </div>
+            <Logo size="md" />
           </div>
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-8">
-            <button 
+            <button
               onClick={() => handleNavClick('product-preview')}
               className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
             >
               Product
             </button>
-            <button 
+            <button
               onClick={() => handleNavClick('how-it-works')}
               className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
             >
               How It Works
             </button>
-            <button 
+            <button
               onClick={() => handleNavClick('features')}
               className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
             >
               Features
             </button>
-            <button 
+            <button
               onClick={() => handleNavClick('pricing')}
               className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
             >
               Pricing
             </button>
-            <button 
+            <button
               onClick={() => handleNavClick('faq')}
               className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
             >
@@ -82,7 +75,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-3">
             {user ? (
               <Button
-                variant="emerald"
+                variant="rose"
                 size="md"
                 rightIcon={<ArrowRight className="w-4 h-4" />}
                 onClick={() => setActiveView('dashboard')}
@@ -102,7 +95,7 @@ export const Navbar: React.FC = () => {
                   Log In
                 </Button>
                 <Button
-                  variant="emerald"
+                  variant="rose"
                   size="md"
                   rightIcon={<ArrowRight className="w-4 h-4" />}
                   onClick={() => {
@@ -130,25 +123,25 @@ export const Navbar: React.FC = () => {
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 pt-2 border-t border-slate-200/80 animate-slide-down space-y-3">
-            <button 
+            <button
               onClick={() => handleNavClick('product-preview')}
               className="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg"
             >
               Product
             </button>
-            <button 
+            <button
               onClick={() => handleNavClick('how-it-works')}
               className="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg"
             >
               How It Works
             </button>
-            <button 
+            <button
               onClick={() => handleNavClick('features')}
               className="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg"
             >
               Features
             </button>
-            <button 
+            <button
               onClick={() => handleNavClick('pricing')}
               className="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg"
             >
@@ -156,7 +149,7 @@ export const Navbar: React.FC = () => {
             </button>
             <div className="pt-2 flex flex-col gap-2">
               <Button
-                variant="emerald"
+                variant="rose"
                 size="md"
                 className="w-full"
                 onClick={() => {

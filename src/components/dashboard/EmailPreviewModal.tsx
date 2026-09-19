@@ -5,12 +5,12 @@ import { Modal } from '../common/Modal';
 import { Button } from '../common/Button';
 
 export const EmailPreviewModal: React.FC = () => {
-  const { 
-    isEmailPreviewModalOpen, 
-    setIsEmailPreviewModalOpen, 
-    selectedEmailAlert, 
-    setFixingLink, 
-    affiliateLinks 
+  const {
+    isEmailPreviewModalOpen,
+    setIsEmailPreviewModalOpen,
+    selectedEmailAlert,
+    setFixingLink,
+    affiliateLinks
   } = useApp();
 
   if (!isEmailPreviewModalOpen || !selectedEmailAlert) return null;
@@ -57,8 +57,8 @@ export const EmailPreviewModal: React.FC = () => {
         <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-subtle space-y-5 text-slate-800">
           {/* Email Brand Header */}
           <div className="flex items-center gap-2 pb-4 border-b border-slate-100">
-            <div className="w-7 h-7 rounded-lg bg-slate-900 text-emerald-400 flex items-center justify-center font-bold">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="w-7 h-7 rounded-lg bg-slate-900 text-rose-400 flex items-center justify-center font-bold">
+              <ShieldCheck className="w-4 h-4 text-rose-400" />
             </div>
             <span className="text-sm font-bold text-slate-900">LinkGuard Security Alert</span>
           </div>

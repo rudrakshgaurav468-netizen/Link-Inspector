@@ -25,7 +25,7 @@ export const BillingTab: React.FC = () => {
         <div>
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-bold text-slate-900">Subscription & Usage</h2>
-            <span className="px-2 py-0.5 rounded-full text-xs font-bold uppercase bg-emerald-100 text-emerald-800">
+            <span className="px-2 py-0.5 rounded-full text-xs font-bold uppercase bg-rose-100 text-rose-800">
               {currentPlan} Plan
             </span>
           </div>
@@ -40,13 +40,13 @@ export const BillingTab: React.FC = () => {
         <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-card space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">Affiliate Links Monitored</span>
-            <span className="text-xs font-bold font-mono text-emerald-700">
+            <span className="text-xs font-bold font-mono text-rose-700">
               {totalLinks} / {currentPlan === 'free' ? '100' : currentPlan === 'pro' ? '5,000' : '50,000'}
             </span>
           </div>
           <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden border border-slate-200">
             <div
-              className="bg-emerald-500 h-full rounded-full"
+              className="bg-rose-500 h-full rounded-full"
               style={{ width: `${Math.min(100, (totalLinks / (currentPlan === 'free' ? 100 : currentPlan === 'pro' ? 5000 : 50000)) * 100)}%` }}
             />
           </div>
@@ -58,13 +58,13 @@ export const BillingTab: React.FC = () => {
         <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-card space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">Monitored Domains</span>
-            <span className="text-xs font-bold font-mono text-emerald-700">
+            <span className="text-xs font-bold font-mono text-rose-700">
               {websites.length} / {currentPlan === 'free' ? '1' : currentPlan === 'pro' ? '5' : '25'}
             </span>
           </div>
           <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden border border-slate-200">
             <div
-              className="bg-emerald-500 h-full rounded-full"
+              className="bg-rose-500 h-full rounded-full"
               style={{ width: `${Math.min(100, (websites.length / (currentPlan === 'free' ? 1 : currentPlan === 'pro' ? 5 : 25)) * 100)}%` }}
             />
           </div>
@@ -83,8 +83,8 @@ export const BillingTab: React.FC = () => {
             <p className="text-2xl font-extrabold text-slate-900 mt-2">$0<span className="text-xs font-normal text-slate-500">/mo</span></p>
             <p className="text-xs text-slate-500 mt-1">1 website • 100 links</p>
             <ul className="mt-4 space-y-2 text-xs text-slate-600">
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-600" /> Daily monitoring</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-600" /> Email alerts</li>
+              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-rose-600" /> Daily monitoring</li>
+              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-rose-600" /> Email alerts</li>
             </ul>
           </div>
           <div className="mt-6">
@@ -101,8 +101,8 @@ export const BillingTab: React.FC = () => {
         </div>
 
         {/* PRO */}
-        <div className={`bg-white p-6 rounded-2xl border flex flex-col justify-between relative ${currentPlan === 'pro' ? 'border-2 border-emerald-500 shadow-elevated ring-4 ring-emerald-500/10' : 'border-slate-200'}`}>
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[10px] font-bold py-0.5 px-3 rounded-full uppercase">
+        <div className={`bg-white p-6 rounded-2xl border flex flex-col justify-between relative ${currentPlan === 'pro' ? 'border-2 border-rose-500 shadow-elevated ring-4 ring-rose-500/10' : 'border-slate-200'}`}>
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-rose-600 text-white text-[10px] font-bold py-0.5 px-3 rounded-full uppercase">
             Most Popular
           </div>
           <div>
@@ -110,14 +110,14 @@ export const BillingTab: React.FC = () => {
             <p className="text-2xl font-extrabold text-slate-900 mt-2">$9<span className="text-xs font-normal text-slate-500">/mo</span></p>
             <p className="text-xs text-slate-500 mt-1">5 websites • 5,000 links</p>
             <ul className="mt-4 space-y-2 text-xs text-slate-600">
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-600" /> Instant Telegram alerts</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-600" /> Out-of-stock availability engine</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-600" /> 30-day health history</li>
+              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-rose-600" /> Instant Telegram alerts</li>
+              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-rose-600" /> Out-of-stock availability engine</li>
+              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-rose-600" /> 30-day health history</li>
             </ul>
           </div>
           <div className="mt-6">
             <Button
-              variant="emerald"
+              variant="rose"
               size="sm"
               className="w-full"
               disabled={currentPlan === 'pro'}
@@ -135,9 +135,9 @@ export const BillingTab: React.FC = () => {
             <p className="text-2xl font-extrabold text-slate-900 mt-2">$29<span className="text-xs font-normal text-slate-500">/mo</span></p>
             <p className="text-xs text-slate-500 mt-1">25 websites • 50,000 links</p>
             <ul className="mt-4 space-y-2 text-xs text-slate-600">
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-600" /> Priority twice-daily scans</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-600" /> Webhook integration</li>
-              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-600" /> 24/7 dedicated support</li>
+              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-rose-600" /> Priority twice-daily scans</li>
+              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-rose-600" /> Webhook integration</li>
+              <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-rose-600" /> 24/7 dedicated support</li>
             </ul>
           </div>
           <div className="mt-6">
@@ -165,7 +165,7 @@ export const BillingTab: React.FC = () => {
               <p className="text-slate-500 text-[11px]">Expires 08/2028 • Next renewal: October 3, 2026</p>
             </div>
           </div>
-          <span className="text-emerald-700 font-semibold bg-emerald-100 px-2 py-0.5 rounded-full text-[10px]">
+          <span className="text-rose-700 font-semibold bg-rose-100 px-2 py-0.5 rounded-full text-[10px]">
             Active
           </span>
         </div>

@@ -61,7 +61,7 @@ export const PricingSection: React.FC = () => {
         'One-click fix link & instant re-verification',
       ],
       cta: 'Start Monitoring',
-      variant: 'emerald' as const,
+      variant: 'rose' as const,
     },
     {
       id: 'business',
@@ -90,7 +90,7 @@ export const PricingSection: React.FC = () => {
     <section id="pricing" className="py-20 md:py-28 bg-slate-50/70 border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          <span className="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
             Simple, Transparent Pricing
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -104,20 +104,18 @@ export const PricingSection: React.FC = () => {
           <div className="mt-8 inline-flex items-center p-1 bg-white border border-slate-200 rounded-full shadow-subtle">
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                billingCycle === 'monthly' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${billingCycle === 'monthly' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               Monthly Billing
             </button>
             <button
               onClick={() => setBillingCycle('yearly')}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                billingCycle === 'yearly' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${billingCycle === 'yearly' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               <span>Annual Billing</span>
-              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${billingCycle === 'yearly' ? 'bg-white text-emerald-700' : 'bg-emerald-100 text-emerald-700 font-bold'}`}>
+              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${billingCycle === 'yearly' ? 'bg-white text-rose-700' : 'bg-rose-100 text-rose-700 font-bold'}`}>
                 Save 20%
               </span>
             </button>
@@ -132,14 +130,13 @@ export const PricingSection: React.FC = () => {
             return (
               <div
                 key={plan.id}
-                className={`bg-white rounded-3xl p-8 border flex flex-col justify-between relative transition-all duration-200 ${
-                  plan.popular 
-                    ? 'border-2 border-emerald-500 shadow-elevated scale-100 lg:-translate-y-2 ring-4 ring-emerald-500/10' 
+                className={`bg-white rounded-3xl p-8 border flex flex-col justify-between relative transition-all duration-200 ${plan.popular
+                    ? 'border-2 border-rose-500 shadow-elevated scale-100 lg:-translate-y-2 ring-4 ring-rose-500/10'
                     : 'border-slate-200/90 shadow-card hover:border-slate-300'
-                }`}
+                  }`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-xs font-bold py-1 px-4 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-rose-600 text-white text-xs font-bold py-1 px-4 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
                     <Sparkles className="w-3.5 h-3.5" />
                     {plan.badge}
                   </div>
@@ -168,7 +165,7 @@ export const PricingSection: React.FC = () => {
                     <p className="text-xs font-bold text-slate-900 uppercase tracking-wider">Includes:</p>
                     {plan.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
-                        <div className="w-4 h-4 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-200">
+                        <div className="w-4 h-4 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 mt-0.5 border border-rose-200">
                           <Check className="w-3 h-3 stroke-[3]" />
                         </div>
                         <span className="leading-relaxed">{feat}</span>
@@ -195,7 +192,7 @@ export const PricingSection: React.FC = () => {
 
         {/* Guarantee Banner */}
         <div className="mt-12 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-emerald-600" />
+          <ShieldCheck className="w-4 h-4 text-rose-600" />
           <span>30-day money-back guarantee. No questions asked. Cancel anytime in one click.</span>
         </div>
       </div>

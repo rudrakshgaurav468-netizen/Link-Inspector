@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { 
-  History, 
-  Play, 
-  CheckCircle2, 
-  Clock, 
-  FileText, 
-  Link2, 
-  XCircle, 
-  AlertTriangle, 
+import {
+  History,
+  Play,
+  CheckCircle2,
+  Clock,
+  FileText,
+  Link2,
+  XCircle,
+  AlertTriangle,
   ChevronRight,
   Sparkles
 } from 'lucide-react';
@@ -32,7 +32,7 @@ export const ScanHistoryTab: React.FC = () => {
         </div>
 
         <Button
-          variant="emerald"
+          variant="rose"
           size="md"
           isLoading={isScanning}
           leftIcon={<Play className="w-3.5 h-3.5 fill-current" />}
@@ -78,8 +78,8 @@ export const ScanHistoryTab: React.FC = () => {
                 <span className="text-xs font-bold text-slate-900 font-tabular">{job.linksChecked}</span>
               </div>
               <div>
-                <span className="text-[10px] font-bold text-emerald-600 uppercase block">Healthy</span>
-                <span className="text-xs font-bold text-emerald-700 font-tabular">{job.healthyCount}</span>
+                <span className="text-[10px] font-bold text-rose-600 uppercase block">Healthy</span>
+                <span className="text-xs font-bold text-rose-700 font-tabular">{job.healthyCount}</span>
               </div>
               <div>
                 <span className="text-[10px] font-bold text-rose-600 uppercase block">Issues</span>

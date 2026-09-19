@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Heart } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import { Logo } from '../common/Logo';
 
 export const Footer: React.FC = () => {
   const { setActiveView } = useApp();
@@ -11,19 +12,11 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Info */}
           <div className="col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-emerald-500 text-slate-950 flex items-center justify-center font-bold">
-                <ShieldCheck className="w-5 h-5 text-slate-900" />
-              </div>
-              <span className="text-lg font-bold text-white tracking-tight">
-                Link<span className="text-emerald-400">Guard</span>
-              </span>
-            </div>
+            <Logo size="md" variant="light" />
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
               Broken & expired affiliate link monitor. Protect every outbound affiliate link across your blog and niche sites. Never lose a commission.
             </p>
             <div className="flex items-center gap-2 text-xs text-slate-500">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
               <span>All crawlers and monitoring systems operational</span>
             </div>
           </div>

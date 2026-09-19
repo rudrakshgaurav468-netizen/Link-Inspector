@@ -21,9 +21,9 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
 
   let config = {
     label: 'Healthy',
-    bg: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
-    dot: 'bg-emerald-500',
-    icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+    bg: 'bg-rose-50/90 text-rose-800 border-rose-200/90',
+    dot: 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]',
+    icon: <CheckCircle2 className="w-3.5 h-3.5 text-rose-600" />
   };
 
   switch (status) {
@@ -31,9 +31,9 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
     case 'resolved':
       config = {
         label: customLabel || (status === 'resolved' ? 'Resolved ✓' : 'Healthy'),
-        bg: 'bg-emerald-50/90 text-emerald-700 border-emerald-200',
-        dot: 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]',
-        icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+        bg: 'bg-rose-50/90 text-rose-800 border-rose-200',
+        dot: 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]',
+        icon: <CheckCircle2 className="w-3.5 h-3.5 text-rose-600 shrink-0" />
       };
       break;
     case 'broken':
@@ -96,13 +96,12 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
 
 export const Badge: React.FC<{
   children: React.ReactNode;
-  variant?: 'slate' | 'emerald' | 'rose' | 'amber' | 'blue' | 'purple';
+  variant?: 'slate' | 'rose' | 'amber' | 'blue' | 'purple';
   size?: 'sm' | 'md';
   className?: string;
 }> = ({ children, variant = 'slate', size = 'sm', className = '' }) => {
   const styles = {
     slate: 'bg-slate-100 text-slate-700 border-slate-200/80',
-    emerald: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     rose: 'bg-rose-50 text-rose-700 border-rose-200',
     amber: 'bg-amber-50 text-amber-700 border-amber-200',
     blue: 'bg-blue-50 text-blue-700 border-blue-200',

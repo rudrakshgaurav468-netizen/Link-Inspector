@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  Building2, 
-  Globe, 
-  ExternalLink, 
-  Copy, 
-  ShieldCheck, 
-  CheckCircle2, 
-  Lock, 
+import {
+  Building2,
+  Globe,
+  ExternalLink,
+  Copy,
+  ShieldCheck,
+  CheckCircle2,
+  Lock,
   Save,
   Sparkles,
   Eye
@@ -81,7 +81,7 @@ export const WhiteLabelPortalModal: React.FC = () => {
               </Button>
               <Button
                 type="button"
-                variant="emerald"
+                variant="rose"
                 size="sm"
                 leftIcon={<Eye className="w-3.5 h-3.5" />}
                 onClick={() => setIsPreviewOpen(true)}
@@ -203,7 +203,7 @@ export const WhiteLabelPortalModal: React.FC = () => {
                 <p className="text-[11px] text-slate-400">Affiliate Link Health & Audit Portal</p>
               </div>
             </div>
-            <span className="text-xs font-semibold px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">
+            <span className="text-xs font-semibold px-2.5 py-1 bg-rose-50 text-rose-700 rounded-full border border-rose-200">
               Verified Client Report
             </span>
           </div>
@@ -214,13 +214,13 @@ export const WhiteLabelPortalModal: React.FC = () => {
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Monitored Links</span>
               <span className="text-base font-bold text-slate-900 mt-0.5 block font-tabular">1,240</span>
             </div>
-            <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
-              <span className="text-[10px] uppercase font-bold text-emerald-700 block">Link Health</span>
-              <span className="text-base font-bold text-emerald-700 mt-0.5 block font-tabular">98.9%</span>
+            <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-center">
+              <span className="text-[10px] uppercase font-bold text-rose-700 block">Link Health</span>
+              <span className="text-base font-bold text-rose-700 mt-0.5 block font-tabular">98.9%</span>
             </div>
             <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-center">
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Revenue Protected</span>
-              <span className="text-base font-bold text-emerald-700 mt-0.5 block font-tabular">$2,840/mo</span>
+              <span className="text-base font-bold text-rose-700 mt-0.5 block font-tabular">$2,840/mo</span>
             </div>
           </div>
 

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  Send, 
-  CheckCircle2, 
-  ShieldCheck, 
-  ExternalLink, 
-  QrCode, 
-  Bell, 
+import {
+  Send,
+  CheckCircle2,
+  ShieldCheck,
+  ExternalLink,
+  QrCode,
+  Bell,
   Trash2,
   Sparkles
 } from 'lucide-react';
@@ -14,13 +14,13 @@ import { Modal } from '../common/Modal';
 import { Button } from '../common/Button';
 
 export const TelegramModal: React.FC = () => {
-  const { 
-    isTelegramModalOpen, 
-    setIsTelegramModalOpen, 
-    telegram, 
-    connectTelegram, 
-    disconnectTelegram, 
-    sendTelegramTestAlert 
+  const {
+    isTelegramModalOpen,
+    setIsTelegramModalOpen,
+    telegram,
+    connectTelegram,
+    disconnectTelegram,
+    sendTelegramTestAlert
   } = useApp();
 
   const [usernameInput, setUsernameInput] = useState(telegram.username || '@alexvance_tech');
@@ -43,13 +43,13 @@ export const TelegramModal: React.FC = () => {
       {telegram.isConnected ? (
         /* Connected State */
         <div className="space-y-5 text-xs">
-          <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+          <div className="p-4 bg-rose-50 border border-rose-200 rounded-2xl flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center shrink-0 shadow-sm">
               <CheckCircle2 className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-emerald-900">✓ Telegram Connected</h4>
-              <p className="text-emerald-700 mt-0.5">
+              <h4 className="text-sm font-bold text-rose-900">✓ Telegram Connected</h4>
+              <p className="text-rose-700 mt-0.5">
                 Active handle: <strong>{telegram.username}</strong>
               </p>
             </div>
@@ -62,7 +62,7 @@ export const TelegramModal: React.FC = () => {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-slate-500">Notification Status:</span>
-              <span className="font-semibold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">
+              <span className="font-semibold text-rose-700 bg-rose-100 px-2 py-0.5 rounded-full">
                 Enabled (Real-Time)
               </span>
             </div>
@@ -74,7 +74,7 @@ export const TelegramModal: React.FC = () => {
 
           <div className="pt-2 flex flex-col gap-2.5">
             <Button
-              variant="emerald"
+              variant="rose"
               size="md"
               leftIcon={<Send className="w-4 h-4" />}
               onClick={sendTelegramTestAlert}

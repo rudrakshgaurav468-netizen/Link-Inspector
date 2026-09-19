@@ -62,11 +62,11 @@ export const ScannerProgressModal: React.FC = () => {
       <div className="space-y-6">
         {/* Header Title */}
         <div className="text-center">
-          <div className="w-12 h-12 rounded-2xl bg-slate-900 text-emerald-400 flex items-center justify-center mx-auto mb-3 shadow-subtle">
+          <div className="w-12 h-12 rounded-2xl bg-slate-900 text-rose-400 flex items-center justify-center mx-auto mb-3 shadow-subtle">
             {isFinished ? (
-              <CheckCircle2 className="w-7 h-7 text-emerald-400" />
+              <CheckCircle2 className="w-7 h-7 text-rose-400" />
             ) : (
-              <Loader2 className="w-7 h-7 animate-spin text-emerald-400" />
+              <Loader2 className="w-7 h-7 animate-spin text-rose-400" />
             )}
           </div>
           <h3 className="text-xl font-bold text-slate-900">
@@ -83,15 +83,15 @@ export const ScannerProgressModal: React.FC = () => {
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-700">
             <span className="flex items-center gap-2">
-              {!isFinished && <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />}
+              {!isFinished && <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />}
               {scanCurrentStep || 'Initializing scan...'}
             </span>
-            <span className="font-mono text-emerald-700">{scanProgress}%</span>
+            <span className="font-mono text-rose-700">{scanProgress}%</span>
           </div>
 
           <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden border border-slate-200">
             <div
-              className="bg-emerald-500 h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden"
+              className="bg-rose-500 h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden"
               style={{ width: `${scanProgress}%` }}
             >
               {/* Shimmer animation */}
@@ -117,9 +117,9 @@ export const ScannerProgressModal: React.FC = () => {
               </span>
             </div>
 
-            <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-2xl text-center">
-              <span className="text-[10px] uppercase font-bold text-emerald-700 block">Healthy Links</span>
-              <span className="text-lg font-bold text-emerald-700 mt-0.5 block font-tabular">
+            <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-2xl text-center">
+              <span className="text-[10px] uppercase font-bold text-rose-700 block">Healthy Links</span>
+              <span className="text-lg font-bold text-rose-700 mt-0.5 block font-tabular">
                 {realHealthyCount}
               </span>
             </div>
@@ -136,7 +136,7 @@ export const ScannerProgressModal: React.FC = () => {
         {/* Live Terminal Status Messages Log */}
         <div className="bg-slate-950 rounded-2xl p-4 border border-slate-800 text-xs font-mono space-y-1.5 max-h-48 overflow-y-auto">
           <div className="flex items-center gap-2 pb-2 border-b border-slate-800 text-slate-400 text-[11px]">
-            <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+            <Terminal className="w-3.5 h-3.5 text-rose-400" />
             <span>Crawler Engine Telemetry Output</span>
           </div>
 
@@ -147,7 +147,7 @@ export const ScannerProgressModal: React.FC = () => {
           ))}
 
           {isScanning && (
-            <p className="text-emerald-400 text-[11px] flex items-center gap-1.5 animate-pulse">
+            <p className="text-rose-400 text-[11px] flex items-center gap-1.5 animate-pulse">
               <span>› Checking affiliate link status & response times...</span>
             </p>
           )}
@@ -164,7 +164,7 @@ export const ScannerProgressModal: React.FC = () => {
               Close
             </Button>
             <Button
-              variant="emerald"
+              variant="rose"
               size="md"
               rightIcon={<ArrowRight className="w-4 h-4" />}
               onClick={handleViewResults}

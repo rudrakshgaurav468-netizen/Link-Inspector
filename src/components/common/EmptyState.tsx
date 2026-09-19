@@ -30,7 +30,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
       </div>
       <h3 className="text-base font-bold text-slate-900 mb-1">{title}</h3>
       <p className="text-sm text-slate-500 max-w-sm mb-6 leading-relaxed">{description}</p>
-      
+
       {(actionLabel || secondaryActionLabel) && (
         <div className="flex items-center gap-3">
           {secondaryActionLabel && (
@@ -39,7 +39,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
             </Button>
           )}
           {actionLabel && (
-            <Button variant="emerald" size="md" onClick={onAction}>
+            <Button variant="rose" size="md" onClick={onAction}>
               {actionLabel}
             </Button>
           )}

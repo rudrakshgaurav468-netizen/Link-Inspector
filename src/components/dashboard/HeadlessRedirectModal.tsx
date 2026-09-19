@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  Zap, 
-  CheckCircle2, 
-  Globe, 
-  ArrowRight, 
-  Server, 
-  ExternalLink, 
+import {
+  Zap,
+  CheckCircle2,
+  Globe,
+  ArrowRight,
+  Server,
+  ExternalLink,
   ShieldCheck,
   Radio
 } from 'lucide-react';
@@ -80,7 +80,7 @@ export const HeadlessRedirectModal: React.FC = () => {
       onClose={() => setSelectedLinkForRedirect(null)}
       title={
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center">
             <Zap className="w-4 h-4" />
           </div>
           <span className="text-base font-bold text-slate-900">1-Click Headless 301 Redirect</span>
@@ -109,11 +109,10 @@ export const HeadlessRedirectModal: React.FC = () => {
               <div
                 key={opt.id}
                 onClick={() => setSelectedCms(opt.id)}
-                className={`p-3 rounded-2xl border cursor-pointer transition-all flex items-start justify-between gap-3 ${
-                  selectedCms === opt.id
-                    ? 'border-emerald-500 bg-emerald-50/50 shadow-sm ring-2 ring-emerald-500/10'
+                className={`p-3 rounded-2xl border cursor-pointer transition-all flex items-start justify-between gap-3 ${selectedCms === opt.id
+                    ? 'border-rose-500 bg-rose-50/50 shadow-sm ring-2 ring-rose-500/10'
                     : 'border-slate-200 hover:bg-slate-50'
-                }`}
+                  }`}
               >
                 <div className="flex items-start gap-3">
                   <span className="text-xl mt-0.5">{opt.icon}</span>
@@ -132,7 +131,7 @@ export const HeadlessRedirectModal: React.FC = () => {
                   type="radio"
                   checked={selectedCms === opt.id}
                   onChange={() => setSelectedCms(opt.id)}
-                  className="text-emerald-600 focus:ring-emerald-500 w-4 h-4 mt-1"
+                  className="text-rose-600 focus:ring-rose-500 w-4 h-4 mt-1"
                 />
               </div>
             ))}
@@ -150,7 +149,7 @@ export const HeadlessRedirectModal: React.FC = () => {
             value={destinationUrl}
             onChange={(e) => setDestinationUrl(e.target.value)}
             placeholder="https://amazon.com/dp/active-asin?tag=myblog"
-            className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+            className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
           />
         </div>
 
@@ -167,7 +166,7 @@ export const HeadlessRedirectModal: React.FC = () => {
 
           <Button
             type="submit"
-            variant="emerald"
+            variant="rose"
             size="md"
             isLoading={isDeploying}
             leftIcon={<Zap className="w-4 h-4 fill-current" />}

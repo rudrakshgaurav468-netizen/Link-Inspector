@@ -42,7 +42,7 @@ export const AddWebsiteModal: React.FC = () => {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="https://mytechsite.com"
-              className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+              className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
             />
           </div>
           <p className="text-[11px] text-slate-400 mt-1">
@@ -56,27 +56,24 @@ export const AddWebsiteModal: React.FC = () => {
             <button
               type="button"
               onClick={() => setFrequency('daily')}
-              className={`p-2 rounded-xl text-xs font-semibold border transition-all text-center ${
-                frequency === 'daily' ? 'border-emerald-500 bg-emerald-50 text-emerald-800' : 'border-slate-200 text-slate-600 hover:bg-slate-50'
-              }`}
+              className={`p-2 rounded-xl text-xs font-semibold border transition-all text-center ${frequency === 'daily' ? 'border-rose-500 bg-rose-50 text-rose-800' : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                }`}
             >
               Daily (2 AM)
             </button>
             <button
               type="button"
               onClick={() => setFrequency('twice_daily')}
-              className={`p-2 rounded-xl text-xs font-semibold border transition-all text-center ${
-                frequency === 'twice_daily' ? 'border-emerald-500 bg-emerald-50 text-emerald-800' : 'border-slate-200 text-slate-600 hover:bg-slate-50'
-              }`}
+              className={`p-2 rounded-xl text-xs font-semibold border transition-all text-center ${frequency === 'twice_daily' ? 'border-rose-500 bg-rose-50 text-rose-800' : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                }`}
             >
               Twice Daily
             </button>
             <button
               type="button"
               onClick={() => setFrequency('weekly')}
-              className={`p-2 rounded-xl text-xs font-semibold border transition-all text-center ${
-                frequency === 'weekly' ? 'border-emerald-500 bg-emerald-50 text-emerald-800' : 'border-slate-200 text-slate-600 hover:bg-slate-50'
-              }`}
+              className={`p-2 rounded-xl text-xs font-semibold border transition-all text-center ${frequency === 'weekly' ? 'border-rose-500 bg-rose-50 text-rose-800' : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                }`}
             >
               Weekly
             </button>
@@ -90,7 +87,7 @@ export const AddWebsiteModal: React.FC = () => {
               type="checkbox"
               checked={telegramAlerts}
               onChange={(e) => setTelegramAlerts(e.target.checked)}
-              className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+              className="rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
             />
             <span className="flex items-center gap-1.5">
               <Send className="w-3.5 h-3.5 text-sky-500" />
@@ -103,7 +100,7 @@ export const AddWebsiteModal: React.FC = () => {
               type="checkbox"
               checked={emailAlerts}
               onChange={(e) => setEmailAlerts(e.target.checked)}
-              className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+              className="rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
             />
             <span className="flex items-center gap-1.5">
               <Mail className="w-3.5 h-3.5 text-slate-500" />
@@ -124,7 +121,7 @@ export const AddWebsiteModal: React.FC = () => {
 
           <Button
             type="submit"
-            variant="emerald"
+            variant="rose"
             size="md"
             isLoading={isSubmitting}
             rightIcon={<ArrowRight className="w-4 h-4" />}

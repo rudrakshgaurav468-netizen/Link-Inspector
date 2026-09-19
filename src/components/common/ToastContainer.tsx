@@ -11,14 +11,14 @@ export const ToastContainer: React.FC = () => {
     <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 max-w-md w-full pointer-events-none p-4 sm:p-0">
       {toasts.map((toast) => {
         const iconConfig = {
-          success: <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />,
+          success: <CheckCircle2 className="w-5 h-5 text-rose-500 shrink-0" />,
           error: <AlertCircle className="w-5 h-5 text-rose-500 shrink-0" />,
           warning: <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0" />,
           info: <Info className="w-5 h-5 text-blue-500 shrink-0" />,
         }[toast.type];
 
         const borderConfig = {
-          success: 'border-emerald-500/20 bg-white shadow-elevated',
+          success: 'border-rose-500/20 bg-white shadow-elevated',
           error: 'border-rose-500/20 bg-white shadow-elevated',
           warning: 'border-amber-500/20 bg-white shadow-elevated',
           info: 'border-blue-500/20 bg-white shadow-elevated',

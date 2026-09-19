@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { XMLParser } from 'fast-xml-parser';
 import { detectAffiliateNetwork, isAffiliateLink } from '../../src/utils/affiliateDetector';
+import { normalizeDomain, isInternalDomain } from '../../src/utils/urlUtils';
 
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 (compatible; LinkGuard/2.0; +https://linkguard.io/bot)';
 
@@ -9,6 +10,7 @@ export interface CrawlOptions {
   websiteUrl: string;
   websiteId: string;
   userPlan?: 'free' | 'pro' | 'business';
+  linkScope?: 'all' | 'outbound';
   onProgress?: (scannedArticles: number, linksFound: number, status: string) => void;
 }
 
@@ -110,7 +112,7 @@ async function parseSitemapXml(xmlContent: string): Promise<string[]> {
           const childRes = await axios.get(sm.loc.trim(), { headers: { 'User-Agent': USER_AGENT }, timeout: 8000 });
           const childUrls = await parseSitemapXml(childRes.data);
           urls.push(...childUrls);
-        } catch {}
+        } catch { }
       }
     }
   }
@@ -130,7 +132,7 @@ export async function scanWebsiteArticles(options: CrawlOptions): Promise<{
   options.onProgress?.(0, 0, `Discovering sitemap for ${options.websiteUrl}...`);
   const articleUrls = await discoverSitemapUrls(options.websiteUrl);
 
-  const websiteDomain = new URL(options.websiteUrl.startsWith('http') ? options.websiteUrl : `http://${options.websiteUrl}`).hostname.replace(/^www\./, '');
+  const websiteDomain = normalizeDomain(options.websiteUrl);
 
   let scannedCount = 0;
   let totalLinks = 0;
@@ -159,34 +161,36 @@ export async function scanWebsiteArticles(options: CrawlOptions): Promise<{
       const title = $('title').text().trim() || $('h1').first().text().trim() || articleUrl;
       const extractedArticleLinks: CrawledArticleResult['links'] = [];
 
-      $('a').each((_, el) => {
+      $('a[href]').each((_, el) => {
         if (totalLinks >= maxAllowedLinks) return;
 
         const href = $(el).attr('href');
-        const anchorText = $(el).text().trim() || $(el).attr('title') || 'Click here';
+        if (!href) return;
+        const trimmed = href.trim();
+        const anchorText = $(el).text().replace(/\s+/g, ' ').trim() || $(el).attr('title') || 'Click here';
 
-        if (href && href.startsWith('http')) {
-          try {
-            const urlObj = new URL(href);
-            const linkHost = urlObj.hostname.replace(/^www\./, '');
-
-            // Skip internal links
-            if (linkHost === websiteDomain || linkHost.endsWith('.' + websiteDomain)) return;
-
-            const isAff = isAffiliateLink(href);
-            const network = detectAffiliateNetwork(href);
-
-            extractedArticleLinks.push({
-              rawUrl: href,
-              absoluteUrl: href,
-              anchorText: anchorText.substring(0, 80),
-              network,
-              isAffiliate: isAff,
-            });
-
-            totalLinks++;
-          } catch {}
+        let absoluteUrl = '';
+        try {
+          absoluteUrl = new URL(trimmed, articleUrl).href;
+        } catch {
+          absoluteUrl = trimmed;
         }
+
+        const isInternal = isInternalDomain(absoluteUrl, websiteDomain);
+        if (options.linkScope === 'outbound' && isInternal) return;
+
+        const isAff = isInternal ? false : isAffiliateLink(absoluteUrl);
+        const network = isInternal ? 'Custom / Direct' : detectAffiliateNetwork(absoluteUrl);
+
+        extractedArticleLinks.push({
+          rawUrl: trimmed,
+          absoluteUrl,
+          anchorText: anchorText.substring(0, 80),
+          network,
+          isAffiliate: isAff,
+        });
+
+        totalLinks++;
       });
 
       results.push({

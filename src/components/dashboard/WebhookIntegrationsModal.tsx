@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  Bell, 
-  Send, 
-  MessageSquare, 
-  CheckCircle2, 
-  ExternalLink, 
-  Save, 
+import {
+  Bell,
+  Send,
+  MessageSquare,
+  CheckCircle2,
+  ExternalLink,
+  Save,
   Sparkles,
   Zap
 } from 'lucide-react';
@@ -14,13 +14,13 @@ import { Modal } from '../common/Modal';
 import { Button } from '../common/Button';
 
 export const WebhookIntegrationsModal: React.FC = () => {
-  const { 
-    isWebhooksModalOpen, 
-    setIsWebhooksModalOpen, 
-    webhooks, 
-    saveWebhookSettings, 
-    sendSlackTestAlert, 
-    sendDiscordTestAlert 
+  const {
+    isWebhooksModalOpen,
+    setIsWebhooksModalOpen,
+    webhooks,
+    saveWebhookSettings,
+    sendSlackTestAlert,
+    sendDiscordTestAlert
   } = useApp();
 
   const [slackWebhook, setSlackWebhook] = useState(webhooks.slackWebhookUrl || '');
@@ -71,7 +71,7 @@ export const WebhookIntegrationsModal: React.FC = () => {
               type="checkbox"
               checked={slackEnabled}
               onChange={(e) => setSlackEnabled(e.target.checked)}
-              className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+              className="rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
             />
           </div>
 
@@ -81,12 +81,12 @@ export const WebhookIntegrationsModal: React.FC = () => {
               value={slackWebhook}
               onChange={(e) => setSlackWebhook(e.target.value)}
               placeholder="https://hooks.slack.com/services/..."
-              className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-mono text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+              className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-mono text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
             />
             <button
               type="button"
               onClick={sendSlackTestAlert}
-              className="text-[11px] font-semibold text-emerald-600 hover:text-emerald-700 hover:underline inline-flex items-center gap-1"
+              className="text-[11px] font-semibold text-rose-600 hover:text-rose-700 hover:underline inline-flex items-center gap-1"
             >
               <Zap className="w-3 h-3" />
               Send Test Alert to Slack
@@ -108,7 +108,7 @@ export const WebhookIntegrationsModal: React.FC = () => {
               type="checkbox"
               checked={discordEnabled}
               onChange={(e) => setDiscordEnabled(e.target.checked)}
-              className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+              className="rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
             />
           </div>
 
@@ -118,7 +118,7 @@ export const WebhookIntegrationsModal: React.FC = () => {
               value={discordWebhook}
               onChange={(e) => setDiscordWebhook(e.target.value)}
               placeholder="https://discord.com/api/webhooks/..."
-              className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-mono text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+              className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-mono text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
             />
             <button
               type="button"
@@ -138,7 +138,7 @@ export const WebhookIntegrationsModal: React.FC = () => {
               type="checkbox"
               checked={notifyOnCriticalOnly}
               onChange={(e) => setNotifyOnCriticalOnly(e.target.checked)}
-              className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+              className="rounded border-slate-300 text-rose-600 focus:ring-rose-500 w-4 h-4"
             />
             <span className="text-slate-700 font-medium">
               Only dispatch webhooks for <strong>Critical Revenue-Loss ($200+/mo)</strong> links
@@ -159,7 +159,7 @@ export const WebhookIntegrationsModal: React.FC = () => {
 
           <Button
             type="submit"
-            variant="emerald"
+            variant="rose"
             size="md"
             leftIcon={<Save className="w-4 h-4" />}
           >

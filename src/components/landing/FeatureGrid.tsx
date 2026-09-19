@@ -1,12 +1,12 @@
 import React from 'react';
-import { 
-  Globe2, 
-  Link2, 
-  Clock, 
-  AlertOctagon, 
-  PackageX, 
-  Send, 
-  Mail, 
+import {
+  Globe2,
+  Link2,
+  Clock,
+  AlertOctagon,
+  PackageX,
+  Send,
+  Mail,
   LayoutDashboard,
   CheckCircle2,
   Sparkles
@@ -15,19 +15,19 @@ import {
 export const FeatureGrid: React.FC = () => {
   const features = [
     {
-      icon: <Globe2 className="w-5 h-5 text-emerald-600" />,
+      icon: <Globe2 className="w-5 h-5 text-rose-600" />,
       title: 'Automatic Website Scanning',
       description: 'Discover articles automatically through standard sitemap.xml or custom multi-level sitemap indexes without slowing down your site.',
       tag: 'Crawl Engine',
     },
     {
-      icon: <Link2 className="w-5 h-5 text-emerald-600" />,
+      icon: <Link2 className="w-5 h-5 text-rose-600" />,
       title: 'Affiliate Link Detection',
       description: 'Intelligently identifies outbound affiliate links from Amazon Associates, ClickBank, ShareASale, Impact, CJ, Rakuten, and custom affiliate redirects.',
       tag: 'Pattern Matching',
     },
     {
-      icon: <Clock className="w-5 h-5 text-emerald-600" />,
+      icon: <Clock className="w-5 h-5 text-rose-600" />,
       title: 'Daily Link Monitoring',
       description: 'Autonomous background jobs run every night at 2:00 AM to verify uptime and response codes across your entire affiliate link inventory.',
       tag: '24/7 Shield',
@@ -68,7 +68,7 @@ export const FeatureGrid: React.FC = () => {
     <section id="features" className="py-20 md:py-28 bg-slate-50/70 border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          <span className="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
             Engine Capabilities
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -99,8 +99,8 @@ export const FeatureGrid: React.FC = () => {
                 <p className="text-xs text-slate-600 leading-relaxed">{feature.description}</p>
               </div>
 
-              <div className="mt-5 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <div className="mt-5 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold text-rose-700">
+                <CheckCircle2 className="w-3.5 h-3.5 text-rose-600" />
                 <span>Active in all plans</span>
               </div>
             </div>

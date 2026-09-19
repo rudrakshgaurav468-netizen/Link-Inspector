@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { 
-  Globe, 
-  Send, 
-  CheckCircle2, 
-  ArrowRight, 
-  ShieldCheck, 
-  Loader2, 
-  Sparkles, 
-  FileCode2, 
-  Link2 
+import {
+  Globe,
+  Send,
+  CheckCircle2,
+  ArrowRight,
+  ShieldCheck,
+  Loader2,
+  Sparkles,
+  FileCode2,
+  Link2
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useApp } from '../../context/AppContext';
@@ -49,7 +49,7 @@ export const OnboardingWizard: React.FC = () => {
     setCurrentStep(3);
     try {
       confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
-    } catch {}
+    } catch { }
   };
 
   const handleSkipTelegram = () => {
@@ -70,32 +70,32 @@ export const OnboardingWizard: React.FC = () => {
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
       {/* Brand Header */}
       <div className="flex items-center gap-2.5 mb-8">
-        <div className="w-10 h-10 rounded-xl bg-slate-900 text-emerald-400 flex items-center justify-center shadow-subtle">
-          <ShieldCheck className="w-6 h-6 text-emerald-400" />
+        <div className="w-10 h-10 rounded-xl bg-slate-900 text-rose-400 flex items-center justify-center shadow-subtle">
+          <ShieldCheck className="w-6 h-6 text-rose-400" />
         </div>
         <span className="text-xl font-bold tracking-tight text-slate-900">
-          Link<span className="text-emerald-600">Guard</span>
+          Link<span className="text-rose-600">Guard</span>
         </span>
       </div>
 
       {/* Wizard Progress Dots */}
       <div className="flex items-center gap-3 mb-8">
-        <div className={`flex items-center gap-2 text-xs font-semibold ${currentStep >= 1 ? 'text-emerald-700' : 'text-slate-400'}`}>
-          <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${currentStep >= 1 ? 'bg-emerald-600 text-white shadow-sm' : 'bg-slate-200 text-slate-600'}`}>
+        <div className={`flex items-center gap-2 text-xs font-semibold ${currentStep >= 1 ? 'text-rose-700' : 'text-slate-400'}`}>
+          <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${currentStep >= 1 ? 'bg-rose-600 text-white shadow-sm' : 'bg-slate-200 text-slate-600'}`}>
             1
           </span>
           <span>Add Website</span>
         </div>
-        <div className={`w-8 h-0.5 ${currentStep >= 2 ? 'bg-emerald-500' : 'bg-slate-200'}`} />
-        <div className={`flex items-center gap-2 text-xs font-semibold ${currentStep >= 2 ? 'text-emerald-700' : 'text-slate-400'}`}>
-          <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${currentStep >= 2 ? 'bg-emerald-600 text-white shadow-sm' : 'bg-slate-200 text-slate-600'}`}>
+        <div className={`w-8 h-0.5 ${currentStep >= 2 ? 'bg-rose-500' : 'bg-slate-200'}`} />
+        <div className={`flex items-center gap-2 text-xs font-semibold ${currentStep >= 2 ? 'text-rose-700' : 'text-slate-400'}`}>
+          <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${currentStep >= 2 ? 'bg-rose-600 text-white shadow-sm' : 'bg-slate-200 text-slate-600'}`}>
             2
           </span>
           <span>Connect Telegram</span>
         </div>
-        <div className={`w-8 h-0.5 ${currentStep >= 3 ? 'bg-emerald-500' : 'bg-slate-200'}`} />
-        <div className={`flex items-center gap-2 text-xs font-semibold ${currentStep >= 3 ? 'text-emerald-700' : 'text-slate-400'}`}>
-          <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${currentStep >= 3 ? 'bg-emerald-600 text-white shadow-sm' : 'bg-slate-200 text-slate-600'}`}>
+        <div className={`w-8 h-0.5 ${currentStep >= 3 ? 'bg-rose-500' : 'bg-slate-200'}`} />
+        <div className={`flex items-center gap-2 text-xs font-semibold ${currentStep >= 3 ? 'text-rose-700' : 'text-slate-400'}`}>
+          <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${currentStep >= 3 ? 'bg-rose-600 text-white shadow-sm' : 'bg-slate-200 text-slate-600'}`}>
             3
           </span>
           <span>Ready</span>
@@ -108,7 +108,7 @@ export const OnboardingWizard: React.FC = () => {
         {currentStep === 1 && (
           <div>
             <div className="text-center mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3 border border-emerald-200">
+              <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-3 border border-rose-200">
                 <Globe className="w-6 h-6" />
               </div>
               <h2 className="text-xl font-bold text-slate-900">Add your website URL</h2>
@@ -130,11 +130,11 @@ export const OnboardingWizard: React.FC = () => {
                     value={websiteUrl}
                     onChange={(e) => setWebsiteUrl(e.target.value)}
                     placeholder="https://mytechblog.com"
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 font-medium"
+                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 font-medium"
                   />
                 </div>
                 <p className="text-[11px] text-slate-400 mt-1.5 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-rose-500" />
                   Standard sitemap.xml will be discovered automatically
                 </p>
               </div>
@@ -143,16 +143,16 @@ export const OnboardingWizard: React.FC = () => {
                 <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-2 animate-fade-in">
                   <div className="flex items-center justify-between text-slate-700 font-semibold">
                     <span className="flex items-center gap-2">
-                      <Loader2 className="w-4 h-4 animate-spin text-emerald-600" />
+                      <Loader2 className="w-4 h-4 animate-spin text-rose-600" />
                       Scanning website content...
                     </span>
                   </div>
-                  <p className="text-[11px] text-emerald-700 font-mono">{scanStepMessage}</p>
+                  <p className="text-[11px] text-rose-700 font-mono">{scanStepMessage}</p>
                 </div>
               )}
 
               <Button
-                variant="emerald"
+                variant="rose"
                 size="lg"
                 className="w-full"
                 isLoading={isScanning}
@@ -234,7 +234,7 @@ export const OnboardingWizard: React.FC = () => {
         {currentStep === 3 && (
           <div>
             <div className="text-center mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3 border border-emerald-200">
+              <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-3 border border-rose-200">
                 <Sparkles className="w-6 h-6" />
               </div>
               <h2 className="text-xl font-bold text-slate-900">You're All Set!</h2>
@@ -245,28 +245,28 @@ export const OnboardingWizard: React.FC = () => {
 
             <div className="space-y-2.5 mb-6">
               <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs font-semibold text-slate-800">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-rose-600 shrink-0" />
                 <span>Website connected: <strong>mytechblog.com</strong></span>
               </div>
 
               <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs font-semibold text-slate-800">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-rose-600 shrink-0" />
                 <span>Sitemap discovered: <strong>342 articles found</strong></span>
               </div>
 
               <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs font-semibold text-slate-800">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-rose-600 shrink-0" />
                 <span>Affiliate monitoring enabled: <strong>1,240 links indexed</strong></span>
               </div>
 
               <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs font-semibold text-slate-800">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-rose-600 shrink-0" />
                 <span>Daily 2:00 AM autonomous health checks activated</span>
               </div>
             </div>
 
             <Button
-              variant="emerald"
+              variant="rose"
               size="lg"
               className="w-full"
               rightIcon={<ArrowRight className="w-4 h-4" />}

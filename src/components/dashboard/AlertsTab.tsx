@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { 
-  Bell, 
-  AlertOctagon, 
-  AlertTriangle, 
-  CheckCircle2, 
-  Send, 
-  Mail, 
-  Wrench, 
-  ExternalLink, 
-  X, 
+import {
+  Bell,
+  AlertOctagon,
+  AlertTriangle,
+  CheckCircle2,
+  Send,
+  Mail,
+  Wrench,
+  ExternalLink,
+  X,
   CheckCheck,
   Eye
 } from 'lucide-react';
@@ -17,15 +17,15 @@ import { Button } from '../common/Button';
 import { Alert } from '../../types';
 
 export const AlertsTab: React.FC = () => {
-  const { 
-    alerts, 
-    dismissAlert, 
-    resolveAlert, 
-    setFixingLink, 
-    affiliateLinks, 
+  const {
+    alerts,
+    dismissAlert,
+    resolveAlert,
+    setFixingLink,
+    affiliateLinks,
     openEmailPreview,
     setIsTelegramModalOpen,
-    telegram 
+    telegram
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'all' | 'broken' | 'warning' | 'system'>('all');
@@ -78,26 +78,23 @@ export const AlertsTab: React.FC = () => {
         <div className="flex items-center gap-1.5 overflow-x-auto">
           <button
             onClick={() => setActiveTab('all')}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-              activeTab === 'all' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-            }`}
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${activeTab === 'all' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+              }`}
           >
             All Alerts ({alerts.filter(a => !a.isDismissed).length})
           </button>
           <button
             onClick={() => setActiveTab('broken')}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
-              activeTab === 'broken' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-            }`}
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${activeTab === 'broken' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+              }`}
           >
             <span className="w-2 h-2 rounded-full bg-rose-300" />
             Broken Links ({alerts.filter(a => a.type === 'broken' && !a.isDismissed).length})
           </button>
           <button
             onClick={() => setActiveTab('warning')}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
-              activeTab === 'warning' ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
-            }`}
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${activeTab === 'warning' ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+              }`}
           >
             <span className="w-2 h-2 rounded-full bg-amber-300" />
             Warnings ({alerts.filter(a => a.type === 'warning' && !a.isDismissed).length})
@@ -113,7 +110,7 @@ export const AlertsTab: React.FC = () => {
       <div className="space-y-4">
         {visibleAlerts.length === 0 ? (
           <div className="p-12 text-center bg-white rounded-2xl border border-slate-200/80 shadow-card">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-3">
               <CheckCheck className="w-6 h-6" />
             </div>
             <h3 className="text-base font-bold text-slate-900">You’re all caught up!</h3>
@@ -125,15 +122,13 @@ export const AlertsTab: React.FC = () => {
           visibleAlerts.map((alert) => (
             <div
               key={alert.id}
-              className={`bg-white rounded-2xl p-5 border shadow-card transition-all flex flex-col md:flex-row md:items-center justify-between gap-5 relative ${
-                alert.type === 'broken' ? 'border-rose-200/90' : 'border-amber-200/90'
-              }`}
+              className={`bg-white rounded-2xl p-5 border shadow-card transition-all flex flex-col md:flex-row md:items-center justify-between gap-5 relative ${alert.type === 'broken' ? 'border-rose-200/90' : 'border-amber-200/90'
+                }`}
             >
               {/* Left Details */}
               <div className="flex items-start gap-4">
-                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 shadow-sm ${
-                  alert.type === 'broken' ? 'bg-rose-100 text-rose-600' : 'bg-amber-100 text-amber-600'
-                }`}>
+                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 shadow-sm ${alert.type === 'broken' ? 'bg-rose-100 text-rose-600' : 'bg-amber-100 text-amber-600'
+                  }`}>
                   {alert.type === 'broken' ? <AlertOctagon className="w-6 h-6" /> : <AlertTriangle className="w-6 h-6" />}
                 </div>
 
@@ -157,7 +152,7 @@ export const AlertsTab: React.FC = () => {
                     <span className="flex items-center gap-1">
                       <Send className="w-3 h-3 text-sky-500" /> Telegram Sent
                     </span>
-                    <button 
+                    <button
                       onClick={() => openEmailPreview(alert)}
                       className="flex items-center gap-1 text-purple-600 hover:underline font-semibold"
                     >

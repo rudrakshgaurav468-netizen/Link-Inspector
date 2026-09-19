@@ -85,3 +85,20 @@ export function saveDb(data: DatabaseSchema): void {
     console.error('Failed to persist database to disk:', err);
   }
 }
+
+export function resetDb(): DatabaseSchema {
+  const initialDb: DatabaseSchema = {
+    user: INITIAL_USER,
+    telegram: INITIAL_TELEGRAM,
+    websites: INITIAL_WEBSITES,
+    links: INITIAL_AFFILIATE_LINKS,
+    alerts: INITIAL_ALERTS,
+    scanJobs: INITIAL_SCAN_JOBS,
+    competitors: INITIAL_COMPETITOR_OPPORTUNITIES,
+    whiteLabel: INITIAL_WHITE_LABEL,
+    webhooks: INITIAL_WEBHOOKS,
+  };
+  saveDb(initialDb);
+  return initialDb;
+}
+

@@ -9,7 +9,7 @@ export const RevenueLossBadge: React.FC<{
 }> = ({ impact, size = 'sm', showDetails = false }) => {
   if (!impact || impact.estimatedMonthlyLoss === 0) {
     return (
-      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200">
         $0 Loss Risk
       </span>
     );
@@ -47,9 +47,8 @@ export const RevenueLossBadge: React.FC<{
   return (
     <div className="inline-flex items-center gap-1.5 flex-wrap">
       <span
-        className={`inline-flex items-center gap-1 rounded-md border ${style.bg} ${style.text} ${style.border} ${
-          size === 'sm' ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-1 text-xs'
-        }`}
+        className={`inline-flex items-center gap-1 rounded-md border ${style.bg} ${style.text} ${style.border} ${size === 'sm' ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-1 text-xs'
+          }`}
         title={`Estimated based on ${impact.monthlyPageViews.toLocaleString()} monthly page views @ ${impact.conversionRate}% conversion rate`}
       >
         <TrendingDown className="w-3 h-3 text-rose-500 shrink-0" />

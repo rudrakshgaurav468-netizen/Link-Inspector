@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { 
-  LayoutDashboard, 
-  Globe, 
-  Link2, 
-  AlertOctagon, 
-  Bell, 
-  History, 
-  Settings, 
-  CreditCard, 
-  ShieldCheck, 
-  ChevronDown, 
-  Plus, 
-  Send, 
-  LogOut, 
-  ChevronLeft, 
+import {
+  LayoutDashboard,
+  Globe,
+  Link2,
+  AlertOctagon,
+  Bell,
+  History,
+  Settings,
+  CreditCard,
+  ShieldCheck,
+  ChevronDown,
+  Plus,
+  Send,
+  LogOut,
+  ChevronLeft,
   ChevronRight,
   ExternalLink,
   LifeBuoy,
@@ -22,16 +22,17 @@ import {
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { ActiveView } from '../../types';
+import { Logo, WarmHugBadge } from '../common/Logo';
 
 export const Sidebar: React.FC = () => {
-  const { 
-    activeView, 
-    setActiveView, 
-    websites, 
-    activeWebsiteId, 
-    setActiveWebsiteId, 
-    activeWebsite, 
-    alerts, 
+  const {
+    activeView,
+    setActiveView,
+    websites,
+    activeWebsiteId,
+    setActiveWebsiteId,
+    activeWebsite,
+    alerts,
     affiliateLinks,
     setIsAddWebsiteModalOpen,
     setIsTelegramModalOpen,
@@ -51,12 +52,12 @@ export const Sidebar: React.FC = () => {
   const warningsCount = currentLinks.filter(l => l.status === 'warning').length;
   const unreadAlertsCount = alerts.filter(a => !a.isRead && !a.isDismissed).length;
 
-  const navItems: { id: ActiveView; label: string; icon: React.ReactNode; badge?: number; badgeVariant?: 'rose' | 'amber' | 'slate' | 'emerald' }[] = [
+  const navItems: { id: ActiveView; label: string; icon: React.ReactNode; badge?: number; badgeVariant?: 'rose' | 'amber' | 'slate' | 'rose' }[] = [
     { id: 'dashboard', label: 'Overview', icon: <LayoutDashboard className="w-4 h-4" /> },
     { id: 'websites', label: 'Websites', icon: <Globe className="w-4 h-4" />, badge: websites.length, badgeVariant: 'slate' },
     { id: 'links', label: 'Affiliate Links', icon: <Link2 className="w-4 h-4" />, badge: currentLinks.length, badgeVariant: 'slate' },
     { id: 'broken', label: 'Broken Links', icon: <AlertOctagon className="w-4 h-4" />, badge: brokenLinksCount + warningsCount > 0 ? brokenLinksCount + warningsCount : undefined, badgeVariant: brokenLinksCount > 0 ? 'rose' : 'amber' },
-    { id: 'competitors', label: 'Competitor Spotter', icon: <Target className="w-4 h-4 text-emerald-500" />, badge: 3, badgeVariant: 'emerald' },
+    { id: 'competitors', label: 'Competitor Spotter', icon: <Target className="w-4 h-4 text-rose-500" />, badge: 3, badgeVariant: 'rose' },
     { id: 'alerts', label: 'Alerts Feed', icon: <Bell className="w-4 h-4" />, badge: unreadAlertsCount > 0 ? unreadAlertsCount : undefined, badgeVariant: 'rose' },
     { id: 'scans', label: 'Scan History', icon: <History className="w-4 h-4" /> },
     { id: 'settings', label: 'Settings', icon: <Settings className="w-4 h-4" /> },
@@ -68,20 +69,14 @@ export const Sidebar: React.FC = () => {
       {/* Top Header */}
       <div>
         <div className="h-16 px-4 flex items-center justify-between border-b border-slate-100">
-          <div 
+          <div
             onClick={() => setActiveView('landing')}
             className={`flex items-center gap-3 cursor-pointer overflow-hidden ${isCollapsed ? 'justify-center w-full' : ''}`}
           >
-            <div className="w-9 h-9 rounded-xl bg-slate-900 text-emerald-400 flex items-center justify-center shadow-subtle shrink-0">
-              <ShieldCheck className="w-5 h-5 text-emerald-400" />
-            </div>
-            {!isCollapsed && (
-              <div>
-                <span className="text-base font-bold tracking-tight text-slate-900 flex items-center gap-1">
-                  Link<span className="text-emerald-600">Guard</span>
-                </span>
-                <span className="block text-[9px] font-bold text-slate-400 tracking-wider -mt-0.5 uppercase">Affiliate Shield</span>
-              </div>
+            {isCollapsed ? (
+              <WarmHugBadge size="md" />
+            ) : (
+              <Logo size="md" />
             )}
           </div>
 
@@ -104,11 +99,10 @@ export const Sidebar: React.FC = () => {
                 onClick={() => setShowWebsiteMenu(!showWebsiteMenu)}
                 className="w-full flex items-center justify-between p-2.5 rounded-xl border border-slate-200/90 bg-slate-50/70 hover:bg-slate-100/70 text-left transition-colors"
               >
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)] shrink-0" />
+                <div className="flex items-center gap-2 min-w-0">
                   <div className="min-w-0">
                     <p className="text-xs font-bold text-slate-900 truncate">{activeWebsite?.domain || 'Select Website'}</p>
-                    <p className="text-[10px] text-slate-500 truncate">{activeWebsite?.linksCount || 0} links monitored</p>
+                    <p className="text-[10px] text-slate-500 truncate">{currentLinks.length} links monitored</p>
                   </div>
                 </div>
                 <ChevronDown className="w-4 h-4 text-slate-400 shrink-0 ml-1" />
@@ -127,7 +121,7 @@ export const Sidebar: React.FC = () => {
                         setActiveWebsiteId(w.id);
                         setShowWebsiteMenu(false);
                       }}
-                      className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-medium transition-colors ${w.id === activeWebsiteId ? 'bg-emerald-50 text-emerald-700 font-semibold' : 'text-slate-700 hover:bg-slate-50'}`}
+                      className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-medium transition-colors ${w.id === activeWebsiteId ? 'bg-rose-50 text-rose-700 font-semibold' : 'text-slate-700 hover:bg-slate-50'}`}
                     >
                       <span className="truncate">{w.domain}</span>
                       <span className="text-[10px] text-slate-400">{w.linksCount} links</span>
@@ -139,7 +133,7 @@ export const Sidebar: React.FC = () => {
                         setShowWebsiteMenu(false);
                         setIsAddWebsiteModalOpen(true);
                       }}
-                      className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-emerald-600 hover:bg-emerald-50 rounded-lg font-semibold transition-colors"
+                      className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-rose-600 hover:bg-rose-50 rounded-lg font-semibold transition-colors"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       Add New Website
@@ -181,13 +175,12 @@ export const Sidebar: React.FC = () => {
                 key={item.id}
                 onClick={() => setActiveView(item.id)}
                 title={isCollapsed ? item.label : undefined}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all group relative ${
-                  isActive 
-                    ? 'bg-slate-900 text-white shadow-sm font-semibold' 
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all group relative ${isActive
+                    ? 'bg-slate-900 text-white shadow-sm font-semibold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
-                } ${isCollapsed ? 'justify-center px-0' : ''}`}
+                  } ${isCollapsed ? 'justify-center px-0' : ''}`}
               >
-                <span className={isActive ? 'text-emerald-400' : 'text-slate-400 group-hover:text-slate-600'}>
+                <span className={isActive ? 'text-rose-400' : 'text-slate-400 group-hover:text-slate-600'}>
                   {item.icon}
                 </span>
 
@@ -196,17 +189,14 @@ export const Sidebar: React.FC = () => {
                 )}
 
                 {!isCollapsed && item.badge !== undefined && (
-                  <span className={`px-2 py-0.5 text-[10px] font-bold rounded-full ${
-                    isActive 
-                      ? 'bg-slate-800 text-slate-200' 
+                  <span className={`px-2 py-0.5 text-[10px] font-bold rounded-full ${isActive
+                      ? 'bg-slate-800 text-slate-200'
                       : item.badgeVariant === 'rose'
                         ? 'bg-rose-100 text-rose-700'
                         : item.badgeVariant === 'amber'
                           ? 'bg-amber-100 text-amber-700'
-                          : item.badgeVariant === 'emerald'
-                            ? 'bg-emerald-100 text-emerald-700'
-                            : 'bg-slate-100 text-slate-600'
-                  }`}>
+                          : 'bg-slate-100 text-slate-600'
+                    }`}>
                     {item.badge}
                   </span>
                 )}
@@ -230,7 +220,6 @@ export const Sidebar: React.FC = () => {
                 <Send className="w-3 h-3 text-sky-400" />
                 Telegram Alert Bot
               </span>
-              <span className={`w-2 h-2 rounded-full ${telegram.isConnected ? 'bg-emerald-400 shadow-[0_0_6px_#34d399]' : 'bg-slate-500'}`} />
             </div>
             <p className="text-xs font-semibold text-slate-200 truncate">
               {telegram.isConnected ? telegram.username || 'Connected' : 'Not Connected'}
@@ -253,9 +242,6 @@ export const Sidebar: React.FC = () => {
               title="Telegram Notifications"
             >
               <Send className="w-4 h-4" />
-              {telegram.isConnected && (
-                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-slate-900" />
-              )}
             </button>
           </div>
         )}
@@ -272,7 +258,7 @@ export const Sidebar: React.FC = () => {
               <div className="min-w-0">
                 <p className="text-xs font-bold text-slate-900 truncate">{user?.name || 'Alex Vance'}</p>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-wide bg-emerald-50 px-1.5 py-0.2 rounded">PRO</span>
+                  <span className="text-[10px] font-bold text-rose-600 uppercase tracking-wide bg-rose-50 px-1.5 py-0.2 rounded">PRO</span>
                   <span className="text-[10px] text-slate-400">98.9% Health</span>
                 </div>
               </div>

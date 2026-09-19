@@ -1,12 +1,12 @@
 import React from 'react';
-import { 
-  ExternalLink, 
-  RefreshCw, 
-  CheckCircle2, 
-  Wrench, 
-  ShieldCheck, 
-  Clock, 
-  AlertOctagon, 
+import {
+  ExternalLink,
+  RefreshCw,
+  CheckCircle2,
+  Wrench,
+  ShieldCheck,
+  Clock,
+  AlertOctagon,
   ArrowRight,
   Globe,
   FileText
@@ -18,12 +18,12 @@ import { StatusBadge } from '../common/StatusBadge';
 import { getNetworkBadgeColor } from '../../utils/affiliateDetector';
 
 export const LinkDetailModal: React.FC = () => {
-  const { 
-    selectedLinkForDetail, 
-    setSelectedLinkForDetail, 
-    setFixingLink, 
-    checkLinkNow, 
-    resolveAlert 
+  const {
+    selectedLinkForDetail,
+    setSelectedLinkForDetail,
+    setFixingLink,
+    checkLinkNow,
+    resolveAlert
   } = useApp();
 
   if (!selectedLinkForDetail) return null;
@@ -81,7 +81,7 @@ export const LinkDetailModal: React.FC = () => {
 
             <div>
               <span className="text-[10px] font-bold text-slate-400 uppercase block">HTTP Code</span>
-              <span className={`inline-block mt-1 font-mono font-bold text-xs ${link.httpStatus === 200 ? 'text-emerald-600' : 'text-rose-600'}`}>
+              <span className={`inline-block mt-1 font-mono font-bold text-xs ${link.httpStatus === 200 ? 'text-rose-600' : 'text-rose-600'}`}>
                 {link.httpStatus === 0 ? 'Timeout (0)' : link.httpStatus}
               </span>
             </div>
@@ -117,7 +117,7 @@ export const LinkDetailModal: React.FC = () => {
               href={link.articleUrl}
               target="_blank"
               rel="noreferrer"
-              className="text-emerald-600 hover:underline inline-flex items-center gap-1 text-[11px] font-medium"
+              className="text-rose-600 hover:underline inline-flex items-center gap-1 text-[11px] font-medium"
             >
               <span>{link.articleUrl}</span>
               <ExternalLink className="w-3 h-3" />
@@ -152,9 +152,8 @@ export const LinkDetailModal: React.FC = () => {
                 className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs"
               >
                 <div className="flex items-center gap-2.5">
-                  <span className={`w-2.5 h-2.5 rounded-full ${
-                    item.status === 'healthy' ? 'bg-emerald-500' : item.status === 'broken' ? 'bg-rose-500' : 'bg-amber-500'
-                  }`} />
+                  <span className={`w-2.5 h-2.5 rounded-full ${item.status === 'healthy' ? 'bg-rose-500' : item.status === 'broken' ? 'bg-rose-500' : 'bg-amber-500'
+                    }`} />
                   <div>
                     <span className="font-semibold text-slate-900">{item.date}</span>
                     <p className="text-[11px] text-slate-500">{item.message}</p>

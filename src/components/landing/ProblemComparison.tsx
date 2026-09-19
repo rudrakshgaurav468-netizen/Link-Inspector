@@ -66,45 +66,45 @@ export const ProblemComparison: React.FC = () => {
           </div>
 
           {/* WITH LINKGUARD */}
-          <div className="bg-white rounded-2xl p-8 border-2 border-emerald-500 shadow-elevated flex flex-col justify-between relative overflow-hidden ring-4 ring-emerald-500/10">
-            <div className="absolute top-0 right-0 bg-emerald-600 text-white text-[11px] font-bold px-4 py-1 rounded-bl-xl uppercase tracking-wider">
+          <div className="bg-white rounded-2xl p-8 border-2 border-rose-500 shadow-elevated flex flex-col justify-between relative overflow-hidden ring-4 ring-rose-500/10">
+            <div className="absolute top-0 right-0 bg-rose-600 text-white text-[11px] font-bold px-4 py-1 rounded-bl-xl uppercase tracking-wider">
               With LinkGuard
             </div>
 
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-slate-900">Protected 24/7</h3>
-                  <p className="text-xs text-emerald-700 font-semibold">Autonomous affiliate link shield</p>
+                  <p className="text-xs text-rose-700 font-semibold">Autonomous affiliate link shield</p>
                 </div>
               </div>
 
               {/* Flow Steps */}
-              <div className="space-y-4 relative pl-6 border-l-2 border-emerald-100">
+              <div className="space-y-4 relative pl-6 border-l-2 border-rose-100">
                 <div className="relative">
-                  <span className="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-emerald-50" />
+                  <span className="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full bg-rose-500 ring-4 ring-rose-50" />
                   <p className="text-sm font-semibold text-slate-800">Affiliate link breaks or item changes</p>
                   <p className="text-xs text-slate-500 mt-0.5">Daily 2:00 AM crawler checks status & availability</p>
                 </div>
 
                 <div className="relative">
-                  <span className="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-emerald-50" />
-                  <p className="text-sm font-semibold text-emerald-700">Instant Telegram & Email alert sent</p>
+                  <span className="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full bg-rose-500 ring-4 ring-rose-50" />
+                  <p className="text-sm font-semibold text-rose-700">Instant Telegram & Email alert sent</p>
                   <p className="text-xs text-slate-500 mt-0.5">Exact article name and replacement suggestion provided</p>
                 </div>
 
                 <div className="relative">
-                  <span className="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-emerald-50" />
+                  <span className="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full bg-rose-500 ring-4 ring-rose-50" />
                   <p className="text-sm font-semibold text-slate-800">Fix link in 60 seconds</p>
                   <p className="text-xs text-slate-500 mt-0.5">Update URL and LinkGuard verifies it instantly</p>
                 </div>
 
                 <div className="relative">
-                  <span className="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full bg-emerald-600 ring-4 ring-emerald-50" />
-                  <p className="text-sm font-bold text-emerald-700">Keep earning every single commission</p>
+                  <span className="absolute -left-[31px] top-0.5 w-4 h-4 rounded-full bg-rose-600 ring-4 ring-rose-50" />
+                  <p className="text-sm font-bold text-rose-700">Keep earning every single commission</p>
                   <p className="text-xs text-slate-500 mt-0.5">100% affiliate link uptime protected</p>
                 </div>
               </div>
